@@ -1,6 +1,5 @@
 package com.example.BITAppOneServices.Lateral_HDIT_2022;
 
-import com.example.BITAppOneServices.Lateral_DIT_2022.Lateral_DIT_2022;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
