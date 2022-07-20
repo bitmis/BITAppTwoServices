@@ -1,4 +1,4 @@
-package com.example.BITAppOneServices.Entity;
+package com.example.BITAppOneServices.LateralApplicantsPersonlInfo;
 
 
 import lombok.AllArgsConstructor;
@@ -15,7 +15,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "lateral_applicants_personal_info")
 
-public class Lateral_applicants_personl_info {
+public class LateralApplicantsPersonlInfo {
 
     @Id
     private String application_no;

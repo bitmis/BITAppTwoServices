@@ -1,24 +1,24 @@
-package com.example.BITAppOneServices.Entity;
+package com.example.BITAppOneServices.MasterGrades;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "master_al_subjects")
+@Table(name = "master_grades")
 
-public class MasterALSubjects {
+public class MasterGrades {
 
     @Id
     @GeneratedValue
     private int id;
-    private String al_subject;
+    private String grade;
 }

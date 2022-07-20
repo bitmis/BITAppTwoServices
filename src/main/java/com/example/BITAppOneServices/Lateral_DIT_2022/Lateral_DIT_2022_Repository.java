@@ -1,10 +1,7 @@
-package com.example.BITAppOneServices.Repository;
+package com.example.BITAppOneServices.Lateral_DIT_2022;
 
-import com.example.BITAppOneServices.Entity.Lateral_DIT_2022;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-
-import java.util.Optional;
 
 public interface Lateral_DIT_2022_Repository extends JpaRepository<Lateral_DIT_2022, String> {
 

@@ -1,11 +1,11 @@
-package com.example.BITAppOneServices.Entity;
-
+package com.example.BITAppOneServices.MasterCountry;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -13,11 +13,12 @@ import javax.persistence.Table;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "Lateral_DIT_2022")
+@Table(name = "master_country")
 
-public class Lateral_DIT_2022 {
+public class MasterCountry {
 
     @Id
-    private String registration_no;
-    private String id_no;
+    @GeneratedValue
+    private int id;
+    private String country;
 }

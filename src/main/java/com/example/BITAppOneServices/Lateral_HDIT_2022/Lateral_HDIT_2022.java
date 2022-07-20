@@ -1,4 +1,4 @@
-package com.example.BITAppOneServices.Entity;
+package com.example.BITAppOneServices.Lateral_HDIT_2022;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

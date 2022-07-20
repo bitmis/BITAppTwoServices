@@ -1,7 +1,5 @@
-package com.example.BITAppOneServices.Service;
+package com.example.BITAppOneServices.Lateral_DIT_2022;
 
-import com.example.BITAppOneServices.Entity.Lateral_DIT_2022;
-import com.example.BITAppOneServices.Repository.Lateral_DIT_2022_Repository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

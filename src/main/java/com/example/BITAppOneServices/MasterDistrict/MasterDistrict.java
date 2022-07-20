@@ -1,4 +1,4 @@
-package com.example.BITAppOneServices.Entity;
+package com.example.BITAppOneServices.MasterDistrict;
 
 
 import lombok.AllArgsConstructor;

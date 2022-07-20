@@ -1,4 +1,4 @@
-package com.example.BITAppOneServices.Entity;
+package com.example.BITAppOneServices.MasterBankBranch;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -13,12 +13,12 @@ import javax.persistence.Table;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "master_grades")
+@Table(name = "master_bank_branch")
 
-public class MasterGrades {
+public class MasterBankBranch {
 
     @Id
     @GeneratedValue
     private int id;
-    private String grade;
+    private String bankbranch;
 }
