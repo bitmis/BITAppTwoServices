@@ -16,7 +16,7 @@ public class MasterALSubjectsController {
     @GetMapping("/get_al_subjects")
     public List<MasterALSubjects> getALSubjects() {
 
-        System.out.println("gggg");
+        System.out.println("calling AL Subjects");
         return this.masterALSubjectsService.getAllSubjects();
 
     }
