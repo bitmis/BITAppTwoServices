@@ -3,6 +3,8 @@ package com.example.BITAppOneServices.LateralApplicantsPersonlInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 
 @RestController
 public class LateralApplicantsPersonlInfoController {
@@ -11,23 +13,30 @@ public class LateralApplicantsPersonlInfoController {
     private LateralApplicantsPersonlInfoService lateralApplicantsPersonlInfoService;
 
     // Save operation
-    @PostMapping("/save_lateral_student_info")
-    public LateralApplicantsPersonlInfo saveLateralStudentInfo(
+    @PostMapping("/save_lateral_applicant_info")
+    public LateralApplicantsPersonlInfo saveLateralApplicantInfo(
             @RequestBody LateralApplicantsPersonlInfo lateralApplicantsPersonlInfo)
     {
         return lateralApplicantsPersonlInfoService.saveLateralApplicantsPersonlInfo(lateralApplicantsPersonlInfo);
     }
 
     // Read operation
-    @GetMapping("/get_lateral_student_info/{application_no}")
-    public LateralApplicantsPersonlInfo fetchLateralApplicantsPersonlInfo( @PathVariable("application_no") String application_no )
+    @GetMapping("/get_lateral_applicant_info/{application_no}")
+    public LateralApplicantsPersonlInfo fetchLateralApplicantsPersonalInfo( @PathVariable("application_no") String application_no )
     {
-        System.out.println("Heree");
+        System.out.println("get one application");
         return lateralApplicantsPersonlInfoService.fetchLateralApplicantsPersonlInfo(application_no);
     }
 
+    @GetMapping("/get_lateral_applicant_info_list")
+    public List<LateralApplicantsPersonlInfo> fetchLateralApplicantsPersonalInfoList()
+    {
+        System.out.println("get all applications");
+        return lateralApplicantsPersonlInfoService.fetchLateralApplicantsPersonlInfoList();
+    }
+
     // Update operation
-    @PutMapping("/update_lateral_student_info/{application_no}")
+    @PutMapping("/update_lateral_applicant_info/{application_no}")
     public LateralApplicantsPersonlInfo
     updateLateralApplicantsPersonlInfo(@RequestBody LateralApplicantsPersonlInfo lateralApplicantsPersonlInfo,
                      @PathVariable("application_no") String application_no)
@@ -37,7 +46,7 @@ public class LateralApplicantsPersonlInfoController {
     }
 
     // Delete operation
-    @DeleteMapping("/departments/{application_no}")
+    @DeleteMapping("/deleteLateralApplicantsPersonlInfoById/{application_no}")
     public String deleteLateralApplicantsPersonlInfoById(@PathVariable("application_no")
                                                String application_no)
     {

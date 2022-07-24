@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Objects;
 
 @Service
@@ -23,6 +24,11 @@ public class LateralApplicantsPersonlInfoServiceImpl implements LateralApplicant
     @Override
     public LateralApplicantsPersonlInfo fetchLateralApplicantsPersonlInfo(String application_no) {
         return lateralApplicantsPersonlInfoRepository.findById(application_no).get();
+    }
+
+    @Override
+    public List<LateralApplicantsPersonlInfo> fetchLateralApplicantsPersonlInfoList() {
+        return lateralApplicantsPersonlInfoRepository.findAll();
     }
 
     // Update operation

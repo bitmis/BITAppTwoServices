@@ -1,6 +1,7 @@
 package com.example.BITAppOneServices.LateralApplicantsPersonlInfo;
 
 import java.util.HashMap;
+import java.util.List;
 
 public interface LateralApplicantsPersonlInfoService {
 
@@ -10,6 +11,8 @@ public interface LateralApplicantsPersonlInfoService {
 
     // Read operation
     LateralApplicantsPersonlInfo fetchLateralApplicantsPersonlInfo(String application_no);
+
+    List<LateralApplicantsPersonlInfo>fetchLateralApplicantsPersonlInfoList();
 
     // Update operation
     LateralApplicantsPersonlInfo updateLateralApplicantsPersonlInfo(LateralApplicantsPersonlInfo personalInfo,
