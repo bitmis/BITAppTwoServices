@@ -81,6 +81,8 @@ public class LateralApplicantsPersonlInfo {
     private String bit_registration_no;
     private String disabilities;
 
+    private String application_status;
+
 
 
 }

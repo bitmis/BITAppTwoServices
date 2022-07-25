@@ -37,8 +37,7 @@ public class LateralApplicantsPersonlInfoServiceImpl implements LateralApplicant
     updateLateralApplicantsPersonlInfo(LateralApplicantsPersonlInfo lateralApplicantsPersonlInfo,
                                        String application_no) {
         LateralApplicantsPersonlInfo db_info
-                = lateralApplicantsPersonlInfoRepository.findById(application_no)
-                .get();
+                = lateralApplicantsPersonlInfoRepository.findById(application_no).get();
 
         if (Objects.nonNull(lateralApplicantsPersonlInfo.getFull_name())
                 && !"".equalsIgnoreCase(
