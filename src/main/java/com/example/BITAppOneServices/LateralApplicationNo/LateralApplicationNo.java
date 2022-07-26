@@ -18,8 +18,10 @@ public class LateralApplicationNo {
     private int id;
 
     @Column(nullable = false)
-    private int application_no;
+    private String application_no;
 
     @Column(nullable = false)
     private String bit_registration_no;
+
+    private String application_status;
 }

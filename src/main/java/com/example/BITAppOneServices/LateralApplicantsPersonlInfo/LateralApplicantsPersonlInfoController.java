@@ -38,7 +38,7 @@ public class LateralApplicantsPersonlInfoController {
     @GetMapping("/get_lateral_application_status/{application_no}")
     public String fetchLateralApplicationStatus( @PathVariable("application_no") String application_no)
     {
-        System.out.println("get all applications");
+        System.out.println("get  application status");
         return lateralApplicantsPersonlInfoService.fetchLateralApplicationStatus(application_no);
     }
 
