@@ -14,6 +14,8 @@ public interface LateralApplicantsPersonlInfoService {
 
     List<LateralApplicantsPersonlInfo>fetchLateralApplicantsPersonlInfoList();
 
+    String fetchLateralApplicationStatus(String application_no);
+
     // Update operation
     LateralApplicantsPersonlInfo updateLateralApplicantsPersonlInfo(LateralApplicantsPersonlInfo personalInfo,
                                 String application_no);

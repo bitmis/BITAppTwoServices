@@ -19,4 +19,5 @@ public class Lateral_HDIT_2022 {
     @Id
     private String registration_no;
     private String id_no;
+    private String year = "3";
 }

@@ -82,6 +82,7 @@ public class LateralApplicantsPersonlInfo {
     private String disabilities;
 
     private String application_status;
+    private String apply_bit_year;
 
 
 

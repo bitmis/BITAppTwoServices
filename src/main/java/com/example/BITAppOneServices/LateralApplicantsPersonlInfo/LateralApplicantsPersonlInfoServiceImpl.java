@@ -26,10 +26,17 @@ public class LateralApplicantsPersonlInfoServiceImpl implements LateralApplicant
         return lateralApplicantsPersonlInfoRepository.findById(application_no).get();
     }
 
+    //Get Operations
     @Override
     public List<LateralApplicantsPersonlInfo> fetchLateralApplicantsPersonlInfoList() {
         return lateralApplicantsPersonlInfoRepository.findAll();
     }
+
+    @Override
+    public String fetchLateralApplicationStatus(String application_no) {
+        return lateralApplicantsPersonlInfoRepository.fetchLateralApplicationStatus(application_no);
+    }
+
 
     // Update operation
     @Override

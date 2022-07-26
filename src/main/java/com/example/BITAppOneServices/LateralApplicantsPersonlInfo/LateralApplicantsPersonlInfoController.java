@@ -35,6 +35,15 @@ public class LateralApplicantsPersonlInfoController {
         return lateralApplicantsPersonlInfoService.fetchLateralApplicantsPersonlInfoList();
     }
 
+    @GetMapping("/get_lateral_application_status/{application_no}")
+    public String fetchLateralApplicationStatus( @PathVariable("application_no") String application_no)
+    {
+        System.out.println("get all applications");
+        return lateralApplicantsPersonlInfoService.fetchLateralApplicationStatus(application_no);
+    }
+
+
+
     // Update operation
     @PutMapping("/update_lateral_applicant_info/{application_no}")
     public LateralApplicantsPersonlInfo

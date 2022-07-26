@@ -20,4 +20,6 @@ public class Lateral_DIT_2022 {
     @Id
     private String registration_no;
     private String id_no;
+    private String year = "2";
+
 }
