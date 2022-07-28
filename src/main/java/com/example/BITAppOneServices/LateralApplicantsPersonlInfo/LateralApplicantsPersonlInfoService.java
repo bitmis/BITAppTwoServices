@@ -6,7 +6,14 @@ public interface LateralApplicantsPersonlInfoService {
 
 
     // Save operation
-    LateralApplicantsPersonlInfo saveLateralApplicantsPersonlInfo(LateralApplicantsPersonlInfo lateralApplicantsPersonlInfo);
+    LateralApplicantsPersonlInfo saveLateralApplicantsInfo(LateralApplicantsPersonlInfo lateralApplicantsPersonlInfo);
+
+    int saveLateralApplicantsPersonalInfo(LateralApplicantsPersonlInfo lateralApplicantsPersonlInfo);
+
+    int saveLateralApplicantsContactInfo(LateralApplicantsPersonlInfo lateralApplicantsPersonlInfo);
+
+    int saveLateralApplicantsEducationInfo(LateralApplicantsPersonlInfo lateralApplicantsPersonlInfo);
+
 
     // Read operation
     LateralApplicantsPersonlInfo fetchLateralApplicantsPersonlInfo(String application_no);

@@ -31,6 +31,8 @@ public class LateralApplicantsPersonlInfo {
     private String id_type;
     private String id_no;
     private String dob;
+    private String citizenship;
+    private String nationality;
 
     private String email;
     private String phone;
@@ -41,8 +43,7 @@ public class LateralApplicantsPersonlInfo {
     private String district;
     private String country;
 
-    private String citizenship;
-    private String nationality;
+
 
     private String qualification_type;
     private String qualification_pending;

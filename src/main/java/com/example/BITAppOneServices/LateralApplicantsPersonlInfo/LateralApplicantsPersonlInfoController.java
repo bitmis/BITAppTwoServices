@@ -5,7 +5,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-
+@CrossOrigin
+@RequestMapping(value = "/api")
 @RestController
 public class LateralApplicantsPersonlInfoController {
 
@@ -17,8 +18,15 @@ public class LateralApplicantsPersonlInfoController {
     public LateralApplicantsPersonlInfo saveLateralApplicantInfo(
             @RequestBody LateralApplicantsPersonlInfo lateralApplicantsPersonlInfo)
     {
-        return lateralApplicantsPersonlInfoService.saveLateralApplicantsPersonlInfo(lateralApplicantsPersonlInfo);
+        return lateralApplicantsPersonlInfoService.saveLateralApplicantsInfo(lateralApplicantsPersonlInfo);
     }
+
+
+
+
+
+
+
 
     // Read operation
     @GetMapping("/get_lateral_applicant_info/{application_no}")
@@ -44,7 +52,8 @@ public class LateralApplicantsPersonlInfoController {
 
 
 
-    // Update operation
+     // -------------------------------- Update operations  -------------------------------------------------------
+
     @PutMapping("/update_lateral_applicant_info/{application_no}")
     public LateralApplicantsPersonlInfo
     updateLateralApplicantsPersonlInfo(@RequestBody LateralApplicantsPersonlInfo lateralApplicantsPersonlInfo,
@@ -53,6 +62,32 @@ public class LateralApplicantsPersonlInfoController {
         return lateralApplicantsPersonlInfoService.updateLateralApplicantsPersonlInfo(
                 lateralApplicantsPersonlInfo, application_no);
     }
+
+    //update personal info
+    @PutMapping("/save_lateral_applicant_personal_info")
+    public int saveLateralApplicantPersonalInfo(
+            @RequestBody LateralApplicantsPersonlInfo lateralApplicantsPersonlInfo)
+    {
+        return lateralApplicantsPersonlInfoService.saveLateralApplicantsPersonalInfo(lateralApplicantsPersonlInfo);
+    }
+
+    //update contact info
+    @PutMapping("/save_lateral_applicant_contact_info")
+    public int saveLateralApplicantContactInfo(
+            @RequestBody LateralApplicantsPersonlInfo lateralApplicantsPersonlInfo)
+    {
+        return lateralApplicantsPersonlInfoService.saveLateralApplicantsContactInfo(lateralApplicantsPersonlInfo);
+    }
+
+    //update education info
+    @PutMapping("/save_lateral_applicant_education_info")
+    public int saveLateralApplicantEducationInfo(
+            @RequestBody LateralApplicantsPersonlInfo lateralApplicantsPersonlInfo)
+    {
+        return lateralApplicantsPersonlInfoService.saveLateralApplicantsEducationInfo(lateralApplicantsPersonlInfo);
+    }
+
+
 
     // Delete operation
     @DeleteMapping("/deleteLateralApplicantsPersonlInfoById/{application_no}")
