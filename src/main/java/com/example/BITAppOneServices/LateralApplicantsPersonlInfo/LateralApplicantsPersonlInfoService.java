@@ -8,11 +8,7 @@ public interface LateralApplicantsPersonlInfoService {
     // Save operation
     LateralApplicantsPersonlInfo saveLateralApplicantsInfo(LateralApplicantsPersonlInfo lateralApplicantsPersonlInfo);
 
-    int saveLateralApplicantsPersonalInfo(LateralApplicantsPersonlInfo lateralApplicantsPersonlInfo);
 
-    int saveLateralApplicantsContactInfo(LateralApplicantsPersonlInfo lateralApplicantsPersonlInfo);
-
-    int saveLateralApplicantsEducationInfo(LateralApplicantsPersonlInfo lateralApplicantsPersonlInfo);
 
 
     // Read operation
@@ -26,6 +22,16 @@ public interface LateralApplicantsPersonlInfoService {
     LateralApplicantsPersonlInfo updateLateralApplicantsPersonlInfo(LateralApplicantsPersonlInfo personalInfo,
                                 String application_no);
 
+    int updateLateralApplicantsPersonalInfo(LateralApplicantsPersonlInfo lateralApplicantsPersonlInfo);
+
+    int updateLateralApplicantsContactInfo(LateralApplicantsPersonlInfo lateralApplicantsPersonlInfo);
+
+    int updateLateralApplicantsEducationInfo(LateralApplicantsPersonlInfo lateralApplicantsPersonlInfo);
+
+    int updateLateralApplicantsPaymentInfo(LateralApplicantsPersonlInfo lateralApplicantsPersonlInfo);
+
     // Delete operation
     void deleteLateralApplicantsPersonlInfoById(String application_no);
+
+
 }

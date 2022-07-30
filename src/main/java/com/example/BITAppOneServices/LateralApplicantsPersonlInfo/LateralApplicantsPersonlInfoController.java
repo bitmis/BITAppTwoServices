@@ -64,29 +64,36 @@ public class LateralApplicantsPersonlInfoController {
     }
 
     //update personal info
-    @PutMapping("/save_lateral_applicant_personal_info")
-    public int saveLateralApplicantPersonalInfo(
+    @PutMapping("/update_lateral_applicant_personal_info")
+    public int updateLateralApplicantPersonalInfo(
             @RequestBody LateralApplicantsPersonlInfo lateralApplicantsPersonlInfo)
     {
-        return lateralApplicantsPersonlInfoService.saveLateralApplicantsPersonalInfo(lateralApplicantsPersonlInfo);
+        return lateralApplicantsPersonlInfoService.updateLateralApplicantsPersonalInfo(lateralApplicantsPersonlInfo);
     }
 
     //update contact info
-    @PutMapping("/save_lateral_applicant_contact_info")
-    public int saveLateralApplicantContactInfo(
+    @PutMapping("/update_lateral_applicant_contact_info")
+    public int updateLateralApplicantContactInfo(
             @RequestBody LateralApplicantsPersonlInfo lateralApplicantsPersonlInfo)
     {
-        return lateralApplicantsPersonlInfoService.saveLateralApplicantsContactInfo(lateralApplicantsPersonlInfo);
+        return lateralApplicantsPersonlInfoService.updateLateralApplicantsContactInfo(lateralApplicantsPersonlInfo);
     }
 
     //update education info
-    @PutMapping("/save_lateral_applicant_education_info")
-    public int saveLateralApplicantEducationInfo(
+    @PutMapping("/update_lateral_applicant_education_info")
+    public int updateLateralApplicantEducationInfo(
             @RequestBody LateralApplicantsPersonlInfo lateralApplicantsPersonlInfo)
     {
-        return lateralApplicantsPersonlInfoService.saveLateralApplicantsEducationInfo(lateralApplicantsPersonlInfo);
+        return lateralApplicantsPersonlInfoService.updateLateralApplicantsEducationInfo(lateralApplicantsPersonlInfo);
     }
 
+    //update payment info
+    @PutMapping("/update_lateral_applicant_payment_info")
+    public int updateLateralApplicantPaymentInfo(
+            @RequestBody LateralApplicantsPersonlInfo lateralApplicantsPersonlInfo)
+    {
+        return lateralApplicantsPersonlInfoService.updateLateralApplicantsPaymentInfo(lateralApplicantsPersonlInfo);
+    }
 
 
     // Delete operation

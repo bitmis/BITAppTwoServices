@@ -58,7 +58,7 @@ public class LateralApplicantsPersonlInfoServiceImpl implements LateralApplicant
     }
 
     @Override
-    public int saveLateralApplicantsPersonalInfo(LateralApplicantsPersonlInfo lateralApplicantsPersonlInfo) {
+    public int updateLateralApplicantsPersonalInfo(LateralApplicantsPersonlInfo lateralApplicantsPersonlInfo) {
 
         String full_name = lateralApplicantsPersonlInfo.getFull_name();
         String full_name_sinhala = lateralApplicantsPersonlInfo.getFull_name_sinhala();
@@ -95,7 +95,7 @@ public class LateralApplicantsPersonlInfoServiceImpl implements LateralApplicant
 
 
     @Override
-    public int saveLateralApplicantsContactInfo(LateralApplicantsPersonlInfo lateralApplicantsPersonlInfo) {
+    public int updateLateralApplicantsContactInfo(LateralApplicantsPersonlInfo lateralApplicantsPersonlInfo) {
 
 
         String phone = lateralApplicantsPersonlInfo.getPhone();
@@ -108,66 +108,71 @@ public class LateralApplicantsPersonlInfoServiceImpl implements LateralApplicant
 
         String application_no = lateralApplicantsPersonlInfo.getApplication_no();
 
-        return lateralApplicantsPersonlInfoRepository.updateContactInfoNew(phone, mobile, address1, address2, address3, district, country,application_no);
+        return lateralApplicantsPersonlInfoRepository.updateContactInfoNew(phone, mobile, address1, address2, address3, district, country, application_no);
     }
 
     @Override
-    public int saveLateralApplicantsEducationInfo(LateralApplicantsPersonlInfo lateralApplicantsPersonlInfo) {
+    public int updateLateralApplicantsEducationInfo(LateralApplicantsPersonlInfo lateralApplicantsPersonlInfo) {
 
-         String qualification_type = lateralApplicantsPersonlInfo.getQualification_type() ;
-         String qualification_pending = lateralApplicantsPersonlInfo.getQualification_pending();
-         String need_different_req= lateralApplicantsPersonlInfo.getNeed_different_req();
-         String al_year= lateralApplicantsPersonlInfo.getAl_year();
-         String al_index_no= lateralApplicantsPersonlInfo.getAl_index_no();
-         String al_type= lateralApplicantsPersonlInfo.getAl_type();
+        String qualification_type = lateralApplicantsPersonlInfo.getQualification_type();
+        String qualification_pending = lateralApplicantsPersonlInfo.getQualification_pending();
+        String need_different_req = lateralApplicantsPersonlInfo.getNeed_different_req();
+        String al_year = lateralApplicantsPersonlInfo.getAl_year();
+        String al_index_no = lateralApplicantsPersonlInfo.getAl_index_no();
+        String al_type = lateralApplicantsPersonlInfo.getAl_type();
 
-         String al_subject1= lateralApplicantsPersonlInfo.getAl_subject1();
-         String al_result1= lateralApplicantsPersonlInfo.getAl_result1();
+        String al_subject1 = lateralApplicantsPersonlInfo.getAl_subject1();
+        String al_result1 = lateralApplicantsPersonlInfo.getAl_result1();
 
-         String al_subject2= lateralApplicantsPersonlInfo.getAl_subject2();
-         String al_result2= lateralApplicantsPersonlInfo.getAl_result2();
+        String al_subject2 = lateralApplicantsPersonlInfo.getAl_subject2();
+        String al_result2 = lateralApplicantsPersonlInfo.getAl_result2();
 
-         String al_subject3= lateralApplicantsPersonlInfo.getAl_subject3();
-         String al_result3= lateralApplicantsPersonlInfo.getAl_result3();
+        String al_subject3 = lateralApplicantsPersonlInfo.getAl_subject3();
+        String al_result3 = lateralApplicantsPersonlInfo.getAl_result3();
 
-         String al_subject4= lateralApplicantsPersonlInfo.getAl_subject4();
-         String al_result4= lateralApplicantsPersonlInfo.getAl_result4();
+        String al_subject4 = lateralApplicantsPersonlInfo.getAl_subject4();
+        String al_result4 = lateralApplicantsPersonlInfo.getAl_result4();
 
-         String ol_year1= lateralApplicantsPersonlInfo.getOl_year1();
-         String ol_subject1= lateralApplicantsPersonlInfo.getOl_subject1();
-         String ol_result1= lateralApplicantsPersonlInfo.getOl_result1();
+        String ol_year1 = lateralApplicantsPersonlInfo.getOl_year1();
+        String ol_subject1 = lateralApplicantsPersonlInfo.getOl_subject1();
+        String ol_result1 = lateralApplicantsPersonlInfo.getOl_result1();
 
-         String ol_year2= lateralApplicantsPersonlInfo.getOl_year2();
-         String ol_subject2= lateralApplicantsPersonlInfo.getOl_subject2();
-         String ol_result2= lateralApplicantsPersonlInfo.getOl_result2();
+        String ol_year2 = lateralApplicantsPersonlInfo.getOl_year2();
+        String ol_subject2 = lateralApplicantsPersonlInfo.getOl_subject2();
+        String ol_result2 = lateralApplicantsPersonlInfo.getOl_result2();
 
         String application_no = lateralApplicantsPersonlInfo.getApplication_no();
 
 
-
         return lateralApplicantsPersonlInfoRepository.updateEducationInfoNew(
-                application_no,
-                qualification_type ,
-                qualification_pending ,
-                need_different_req ,
-                al_year ,
-                al_index_no ,
-                al_type ,
-                al_subject1 ,
-                al_result1 ,
-                al_subject2 ,
-                al_result2 ,
-                al_subject3 ,
-                al_result3 ,
-                al_subject4 ,
-                al_result4 ,
+                qualification_type, qualification_pending, need_different_req, al_year, al_index_no, al_type,
+                al_subject1, al_result1, al_subject2, al_result2, al_subject3, al_result3, al_subject4,
+                al_result4, ol_year1, ol_subject1, ol_result1, ol_year2, ol_subject2, ol_result2,
+                application_no);
+    }
 
-                ol_year1 ,
-                ol_subject1 ,
-                ol_result1 ,
-                ol_year2 ,
-                ol_subject2 ,
-                ol_result2 );
+
+    @Override
+    public int updateLateralApplicantsPaymentInfo(LateralApplicantsPersonlInfo lateralApplicantsPersonlInfo) {
+
+
+        String type = lateralApplicantsPersonlInfo.getType();
+        String payment_category = lateralApplicantsPersonlInfo.getPayment_category();
+        String payment_type = lateralApplicantsPersonlInfo.getPayment_type();
+        String amount = lateralApplicantsPersonlInfo.getAmount();
+        String over_payment = lateralApplicantsPersonlInfo.getOver_payment();
+        String surcharge = lateralApplicantsPersonlInfo.getSurcharge();
+        String bank = lateralApplicantsPersonlInfo.getBank();
+        String bank_branch = lateralApplicantsPersonlInfo.getBank_branch();
+        String paid_date = lateralApplicantsPersonlInfo.getPaid_date();
+        String invoice_no = lateralApplicantsPersonlInfo.getInvoice_no();
+
+        String application_no = lateralApplicantsPersonlInfo.getApplication_no();
+
+        return this.lateralApplicantsPersonlInfoRepository.updatePaymentInfoNew(type, payment_category, payment_type, amount, over_payment, surcharge, bank,
+                bank_branch, paid_date, invoice_no, application_no);
+
+
     }
 
 
