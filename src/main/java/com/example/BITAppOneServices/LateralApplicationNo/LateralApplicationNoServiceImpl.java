@@ -12,7 +12,39 @@ public class LateralApplicationNoServiceImpl implements LateralApplicationNoServ
 
 
     @Override
-    public String fetchApplicationStatus(String registration_no) {
+    public LateralApplicationNo fetchApplicationStatus(String registration_no) {
         return lateralApplicationNoRepository.fetchLateralApplicationStatus(registration_no);
     }
+
+    @Override
+    public void saveTempApplicationNo(String registration_no, String year){
+
+        LateralApplicationNo lateralApplicationNo = new LateralApplicationNo();
+        lateralApplicationNo.setApplication_no("xxx");
+        lateralApplicationNo.setBit_registration_no(registration_no);
+        lateralApplicationNo.setYear(year);
+        lateralApplicationNo.setApplication_status("pending");
+
+        lateralApplicationNoRepository.save(lateralApplicationNo);
+
+        LateralApplicationNo tempEntity = lateralApplicationNoRepository.findByRegNo(registration_no);
+        System.out.println(tempEntity.getId());
+
+        int id =  tempEntity.getId();
+        String formatted = String.format("%06d",id);
+        //21Y2M000047
+        //22Y2M000004
+        String correct_application_no = "22Y"+ year+"N"+formatted;
+
+        lateralApplicationNoRepository.updateCorrectApplicationNo(correct_application_no,year ,registration_no );
+
+
+
+
+
+
+
+    }
+
+
 }

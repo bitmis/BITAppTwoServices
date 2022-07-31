@@ -23,5 +23,9 @@ public class LateralApplicationNo {
     @Column(nullable = false)
     private String bit_registration_no;
 
+    @Column(nullable = false)
+    private String year;
+
+    @Column(nullable = false)
     private String application_status;
 }

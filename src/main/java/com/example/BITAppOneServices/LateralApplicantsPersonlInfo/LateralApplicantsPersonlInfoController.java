@@ -24,10 +24,6 @@ public class LateralApplicantsPersonlInfoController {
 
 
 
-
-
-
-
     // Read operation
     @GetMapping("/get_lateral_applicant_info/{application_no}")
     public LateralApplicantsPersonlInfo fetchLateralApplicantsPersonalInfo( @PathVariable("application_no") String application_no )

@@ -2,5 +2,7 @@ package com.example.BITAppOneServices.LateralApplicationNo;
 
 public interface LateralApplicationNoService {
 
-    String fetchApplicationStatus(String bit_registration_no);
+    LateralApplicationNo fetchApplicationStatus(String bit_registration_no);
+
+    void saveTempApplicationNo(String bit_registration_no , String year);
 }
