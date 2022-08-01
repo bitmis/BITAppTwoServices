@@ -17,15 +17,15 @@ public class LateralApplicationNo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(nullable = false)
+    @Column(nullable = false,length = 50)
     private String application_no;
 
-    @Column(nullable = false)
+    @Column(nullable = false ,length = 50)
     private String bit_registration_no;
 
-    @Column(nullable = false)
+    @Column(nullable = false ,length = 50)
     private String year;
 
-    @Column(nullable = false)
+    @Column(nullable = false ,length = 50)
     private String application_status;
 }
