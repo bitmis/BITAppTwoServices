@@ -26,7 +26,8 @@ public class LateralApplicationNoServiceImpl implements LateralApplicationNoServ
         lateralApplicationNo.setApplication_status("pending");
 
         LateralApplicationNo exists_L = lateralApplicationNoRepository.findByRegNo(registration_no);
-        if (exists_L.getBit_registration_no() == null) {
+        System.out.println(exists_L+"  *** check if exists");
+        if (exists_L == null) {
             lateralApplicationNoRepository.save(lateralApplicationNo);
         }
 
