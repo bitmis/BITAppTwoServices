@@ -18,16 +18,16 @@ public class LateralApplicationNo_HDITServiceImpl implements LateralApplicationN
     @Override
     public void saveTempApplicationNo(String registration_no, String year) {
 
-        LateralApplicationNo_HDIT lateralApplicationNo = new LateralApplicationNo_HDIT();
-        lateralApplicationNo.setApplication_no("xxx");
-        lateralApplicationNo.setBit_registration_no(registration_no);
-        lateralApplicationNo.setYear(year);
-        lateralApplicationNo.setApplication_status("pending");
+        LateralApplicationNo_HDIT HDIT_lateralApplicationNo = new LateralApplicationNo_HDIT();
+        HDIT_lateralApplicationNo.setApplication_no("yyy");
+        HDIT_lateralApplicationNo.setBit_registration_no(registration_no);
+        HDIT_lateralApplicationNo.setYear(year);
+        HDIT_lateralApplicationNo.setApplication_status("pending");
 
-        LateralApplicationNo_HDIT exists_L = lateralApplicationNo_HDITRepository.findByRegNo(registration_no);
-        System.out.println(exists_L+"  *** check if exists");
-        if (exists_L == null) {
-            lateralApplicationNo_HDITRepository.save(lateralApplicationNo);
+        LateralApplicationNo_HDIT exists_HDIT = lateralApplicationNo_HDITRepository.findByRegNo(registration_no);
+        System.out.println(exists_HDIT+"  *** check if exists");
+        if (exists_HDIT == null) {
+            lateralApplicationNo_HDITRepository.save(HDIT_lateralApplicationNo);
         }
 
         LateralApplicationNo_HDIT tempEntity = lateralApplicationNo_HDITRepository.findByRegNo(registration_no);
