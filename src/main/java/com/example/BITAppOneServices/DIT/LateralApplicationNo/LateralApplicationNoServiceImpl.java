@@ -1,4 +1,4 @@
-package com.example.BITAppOneServices.LateralApplicationNo;
+package com.example.BITAppOneServices.DIT.LateralApplicationNo;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

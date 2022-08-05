@@ -1,4 +1,4 @@
-package com.example.BITAppOneServices.LateralApplicationNo;
+package com.example.BITAppOneServices.DIT.LateralApplicationNo;
 
 public interface LateralApplicationNoService {
 

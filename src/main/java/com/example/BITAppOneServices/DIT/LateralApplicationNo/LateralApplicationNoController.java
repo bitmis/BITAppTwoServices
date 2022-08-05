@@ -1,4 +1,4 @@
-package com.example.BITAppOneServices.LateralApplicationNo;
+package com.example.BITAppOneServices.DIT.LateralApplicationNo;
 
 import org.springframework.web.bind.annotation.GetMapping;
 

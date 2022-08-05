@@ -1,4 +1,4 @@
-package com.example.BITAppOneServices.Lateral_HDIT_2022;
+package com.example.BITAppOneServices.HDIT.Lateral_HDIT_2022;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

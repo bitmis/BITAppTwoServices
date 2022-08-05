@@ -1,4 +1,4 @@
-package com.example.BITAppOneServices.LateralApplicationNo;
+package com.example.BITAppOneServices.HDIT.LateralApplicationNo_HDIT;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -6,12 +6,14 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "lateral_application_no")
-public class LateralApplicationNo {
+@Table(name = "lateral_application_no_hdit")
+public class LateralApplicationNo_HDIT {
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

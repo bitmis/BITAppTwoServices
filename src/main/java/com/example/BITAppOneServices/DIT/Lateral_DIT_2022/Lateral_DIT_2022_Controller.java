@@ -1,4 +1,4 @@
-package com.example.BITAppOneServices.Lateral_DIT_2022;
+package com.example.BITAppOneServices.DIT.Lateral_DIT_2022;
 
 import org.springframework.web.bind.annotation.*;
 

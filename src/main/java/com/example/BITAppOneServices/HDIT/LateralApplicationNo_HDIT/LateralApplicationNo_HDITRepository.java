@@ -1,4 +1,4 @@
-package com.example.BITAppOneServices.LateralApplicationNo_HDIT;
+package com.example.BITAppOneServices.HDIT.LateralApplicationNo_HDIT;
 
 
 import org.springframework.data.jpa.repository.JpaRepository;

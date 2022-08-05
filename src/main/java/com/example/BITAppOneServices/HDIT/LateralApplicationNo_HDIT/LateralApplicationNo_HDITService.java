@@ -1,4 +1,4 @@
-package com.example.BITAppOneServices.LateralApplicationNo_HDIT;
+package com.example.BITAppOneServices.HDIT.LateralApplicationNo_HDIT;
 
 public interface LateralApplicationNo_HDITService {
 

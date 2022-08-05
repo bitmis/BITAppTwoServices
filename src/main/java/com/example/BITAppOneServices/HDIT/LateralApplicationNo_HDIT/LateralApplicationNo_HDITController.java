@@ -1,4 +1,4 @@
-package com.example.BITAppOneServices.LateralApplicationNo_HDIT;
+package com.example.BITAppOneServices.HDIT.LateralApplicationNo_HDIT;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
