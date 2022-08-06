@@ -20,9 +20,4 @@ public interface LateralApplicationNoRepository extends JpaRepository<LateralApp
     @Query("update LateralApplicationNo l set l.application_no = ?1 where l.year = ?2 and l.bit_registration_no = ?3")
     int updateCorrectApplicationNo(String application_no, String year, String bit_registration_no);
 
-
-//    @Query("insert into LateralApplicationNo")
-//    void saveInfo(LateralApplicationNo lateralApplicationNo);
-
-    //String sql = "INSERT INTO tempno_gen_regno( application_no, year)  SELECT * FROM ( SELECT '" + applicantNo + "' as col1,'" + year + "' as col2) AS temp WHERE NOT EXISTS (SELECT application_no FROM tempno_gen_regno WHERE application_no = '" + applicantNo + "') LIMIT 1;";
 }

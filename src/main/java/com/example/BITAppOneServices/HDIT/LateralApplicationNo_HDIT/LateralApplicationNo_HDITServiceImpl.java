@@ -16,7 +16,7 @@ public class LateralApplicationNo_HDITServiceImpl implements LateralApplicationN
     }
 
     @Override
-    public LateralApplicationNo_HDIT saveTempHDITApplicationNo(String registration_no, String year) {
+    public int saveTempHDITApplicationNo(String registration_no, String year) {
 
         LateralApplicationNo_HDIT HDIT_lateralApplicationNo = new LateralApplicationNo_HDIT();
         HDIT_lateralApplicationNo.setApplication_no("yyy");
@@ -39,7 +39,7 @@ public class LateralApplicationNo_HDITServiceImpl implements LateralApplicationN
         //22Y2M000004
         String correct_application_no = "22Y" + year + "N" + formatted;
 
-        LateralApplicationNo_HDIT result = lateralApplicationNo_HDITRepository.updateCorrectApplicationNo(correct_application_no, year, registration_no);
+       int result = lateralApplicationNo_HDITRepository.updateCorrectApplicationNo(correct_application_no, year, registration_no);
        System.out.println("result" + result);
        return result;
 

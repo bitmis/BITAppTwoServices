@@ -4,5 +4,5 @@ public interface LateralApplicationNoService {
 
     LateralApplicationNo fetchApplicationStatus(String bit_registration_no);
 
-    void saveTempApplicationNo(String bit_registration_no , String year);
+    int saveTempApplicationNo(String bit_registration_no , String year);
 }

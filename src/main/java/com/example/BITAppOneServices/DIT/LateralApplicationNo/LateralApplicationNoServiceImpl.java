@@ -17,7 +17,7 @@ public class LateralApplicationNoServiceImpl implements LateralApplicationNoServ
     }
 
     @Override
-    public void saveTempApplicationNo(String registration_no, String year) {
+    public int saveTempApplicationNo(String registration_no, String year) {
 
         LateralApplicationNo lateralApplicationNo = new LateralApplicationNo();
         lateralApplicationNo.setApplication_no("xxx");
@@ -40,8 +40,9 @@ public class LateralApplicationNoServiceImpl implements LateralApplicationNoServ
         //22Y2M000004
         String correct_application_no = "22Y" + year + "N" + formatted;
 
-        lateralApplicationNoRepository.updateCorrectApplicationNo(correct_application_no, year, registration_no);
+        int result =  lateralApplicationNoRepository.updateCorrectApplicationNo(correct_application_no, year, registration_no);
 
+        return result;
 
     }
 

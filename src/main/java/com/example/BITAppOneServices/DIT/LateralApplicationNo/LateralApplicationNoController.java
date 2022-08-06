@@ -18,9 +18,9 @@ public class LateralApplicationNoController {
 
     // Save operation
     @GetMapping("/save_dit_lateral_application_number/{registration_no}/{year}")
-    public void saveApplicationNumber( @PathVariable("registration_no") String registration_no ,@PathVariable("year") String year)
+    public int saveApplicationNumber( @PathVariable("registration_no") String registration_no ,@PathVariable("year") String year)
     {
-         lateralApplicationNoService.saveTempApplicationNo(registration_no , year);
+         return lateralApplicationNoService.saveTempApplicationNo(registration_no , year);
 
     }
 

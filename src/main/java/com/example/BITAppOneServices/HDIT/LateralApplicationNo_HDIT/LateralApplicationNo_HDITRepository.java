@@ -16,5 +16,5 @@ public interface LateralApplicationNo_HDITRepository extends JpaRepository<Later
     @Transactional
     @Modifying
     @Query("update LateralApplicationNo_HDIT l set l.application_no = ?1 where l.year = ?2 and l.bit_registration_no = ?3")
-    LateralApplicationNo_HDIT updateCorrectApplicationNo(String application_no, String year, String bit_registration_no);
+    int updateCorrectApplicationNo(String application_no, String year, String bit_registration_no);
 }
