@@ -16,7 +16,7 @@ public class LateralApplicationNo_HDITServiceImpl implements LateralApplicationN
     }
 
     @Override
-    public void saveTempApplicationNo(String registration_no, String year) {
+    public void saveTempHDITApplicationNo(String registration_no, String year) {
 
         LateralApplicationNo_HDIT HDIT_lateralApplicationNo = new LateralApplicationNo_HDIT();
         HDIT_lateralApplicationNo.setApplication_no("yyy");

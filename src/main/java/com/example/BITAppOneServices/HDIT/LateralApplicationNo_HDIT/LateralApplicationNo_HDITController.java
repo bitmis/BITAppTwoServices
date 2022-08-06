@@ -16,7 +16,7 @@ public class LateralApplicationNo_HDITController {
     @GetMapping("/save_hdit_lateral_application_number/{registration_no}/{year}")
     public void saveApplicationNumber(@PathVariable("registration_no") String registration_no , @PathVariable("year") String year)
     {
-        lateralApplicationNo_HDITService.saveTempApplicationNo(registration_no , year);
+        lateralApplicationNo_HDITService.saveTempHDITApplicationNo(registration_no , year);
 
     }
 
