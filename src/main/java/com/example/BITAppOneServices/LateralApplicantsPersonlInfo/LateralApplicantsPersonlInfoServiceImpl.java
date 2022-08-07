@@ -23,7 +23,7 @@ public class LateralApplicantsPersonlInfoServiceImpl implements LateralApplicant
     // Read operation
     @Override
     public LateralApplicantsPersonlInfo fetchLateralApplicantsPersonlInfo(String application_no) {
-        return lateralApplicantsPersonlInfoRepository.findById(application_no).get();
+        return lateralApplicantsPersonlInfoRepository.findByApplicationNo(application_no);
     }
 
     //Get Operations
@@ -181,6 +181,8 @@ public class LateralApplicantsPersonlInfoServiceImpl implements LateralApplicant
     public void deleteLateralApplicantsPersonlInfoById(String application_no) {
         lateralApplicantsPersonlInfoRepository.deleteById(application_no);
     }
+
+
 
 
 }

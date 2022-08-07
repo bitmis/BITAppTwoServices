@@ -1,5 +1,7 @@
 package com.example.BITAppOneServices.LateralApplicantsPersonlInfo;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.util.JSONPObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,6 +21,17 @@ public class LateralApplicantsPersonlInfoController {
             @RequestBody LateralApplicantsPersonlInfo lateralApplicantsPersonlInfo)
     {
         return lateralApplicantsPersonlInfoService.saveLateralApplicantsInfo(lateralApplicantsPersonlInfo);
+    }
+
+    @PostMapping("/save_lateral_application_number")
+    public void saveLateralApplicationNumber(@RequestBody JsonNode node)
+    {
+
+        String application_no = node.get("application_no").toString();
+        String eligible_year = node.get("eligible_year").toString();
+        String application_status = node.get("application_status").toString();
+
+
     }
 
 

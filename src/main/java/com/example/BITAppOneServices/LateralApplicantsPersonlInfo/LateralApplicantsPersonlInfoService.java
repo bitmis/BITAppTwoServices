@@ -10,7 +10,6 @@ public interface LateralApplicantsPersonlInfoService {
 
 
 
-
     // Read operation
     LateralApplicantsPersonlInfo fetchLateralApplicantsPersonlInfo(String application_no);
 
@@ -32,6 +31,8 @@ public interface LateralApplicantsPersonlInfoService {
 
     // Delete operation
     void deleteLateralApplicantsPersonlInfoById(String application_no);
+
+
 
 
 }
