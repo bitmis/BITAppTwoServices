@@ -77,6 +77,7 @@ public class LateralApplicantsPersonlInfoController {
     public int updateLateralApplicantPersonalInfo(
             @RequestBody LateralApplicantsPersonlInfo lateralApplicantsPersonlInfo)
     {
+        System.out.println(lateralApplicantsPersonlInfo);
         return lateralApplicantsPersonlInfoService.updateLateralApplicantsPersonalInfo(lateralApplicantsPersonlInfo);
     }
 

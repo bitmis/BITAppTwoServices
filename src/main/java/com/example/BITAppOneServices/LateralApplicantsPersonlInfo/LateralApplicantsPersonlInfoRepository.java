@@ -17,8 +17,8 @@ public interface LateralApplicantsPersonlInfoRepository extends JpaRepository<La
     @Transactional
     @Modifying
     @Query("update LateralApplicantsPersonlInfo l set l.full_name = ?1, l.full_name_sinhala = ?2, l.full_name_tamil = ?3, l.name_marking = ?4, l.initials = ?5, l.title = ?6, l.gender = ?7, l.id_type = ?8, l.id_no = ?9, l.dob = ?10, l.email = ?11 , l.citizenship = ?12 , l.nationality = ?13" +
-            "where l.application_no = ?12")
-    int updatePersonalInfoNew(String application_no, String full_name,
+            "where l.application_no = ?14")
+    int updatePersonalInfoNew(String full_name,
                               String full_name_sinhala,
                               String full_name_tamil,
                               String name_marking,
@@ -26,9 +26,12 @@ public interface LateralApplicantsPersonlInfoRepository extends JpaRepository<La
                               String title,
                               String gender,
                               String id_type,
-                              String id_no, String dob,
-                              String email, String citizenship,
-                              String nationality);
+                              String id_no,
+                              String dob,
+                              String email,
+                              String citizenship,
+                              String nationality,
+                              String application_no);
 
     @Transactional
     @Modifying
@@ -50,7 +53,6 @@ public interface LateralApplicantsPersonlInfoRepository extends JpaRepository<La
     @Query("update LateralApplicantsPersonlInfo l set l.type = ?1, l.payment_category = ?2, l.payment_type = ?3, l.amount = ?4, l.over_payment = ?5, l.surcharge = ?6, l.bank = ?7, l.bank_branch = ?8, l.paid_date = ?9, l.invoice_no = ?10 " +
             "where l.application_no = ?11")
     int updatePaymentInfoNew(String type, String payment_category, String payment_type, String amount, String over_payment, String surcharge, String bank, String bank_branch, String paid_date, String invoice_no, String application_no);
-
 
 
 }

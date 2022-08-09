@@ -77,7 +77,6 @@ public class LateralApplicantsPersonlInfoServiceImpl implements LateralApplicant
         String application_no = lateralApplicantsPersonlInfo.getApplication_no();
 
         return lateralApplicantsPersonlInfoRepository.updatePersonalInfoNew(
-                application_no,
                 full_name,
                 full_name_sinhala,
                 full_name_tamil,
@@ -90,7 +89,8 @@ public class LateralApplicantsPersonlInfoServiceImpl implements LateralApplicant
                 dob,
                 email,
                 citizenship,
-                nationality);
+                nationality ,
+                application_no);
     }
 
 
