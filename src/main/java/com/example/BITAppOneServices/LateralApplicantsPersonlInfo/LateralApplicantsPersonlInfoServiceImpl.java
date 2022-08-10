@@ -141,13 +141,15 @@ public class LateralApplicantsPersonlInfoServiceImpl implements LateralApplicant
         String ol_subject2 = lateralApplicantsPersonlInfo.getOl_subject2();
         String ol_result2 = lateralApplicantsPersonlInfo.getOl_result2();
 
+        String fit_registration_no = lateralApplicantsPersonlInfo.getFit_registration_no();
+
         String application_no = lateralApplicantsPersonlInfo.getApplication_no();
 
 
         return lateralApplicantsPersonlInfoRepository.updateEducationInfoNew(
                 qualification_type, qualification_pending, need_different_req, al_year, al_index_no, al_type,
                 al_subject1, al_result1, al_subject2, al_result2, al_subject3, al_result3, al_subject4,
-                al_result4, ol_year1, ol_subject1, ol_result1, ol_year2, ol_subject2, ol_result2,
+                al_result4, ol_year1, ol_subject1, ol_result1, ol_year2, ol_subject2, ol_result2,fit_registration_no,
                 application_no);
     }
 
