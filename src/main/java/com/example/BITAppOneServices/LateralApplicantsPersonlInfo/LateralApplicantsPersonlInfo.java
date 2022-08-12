@@ -246,6 +246,14 @@ public class LateralApplicantsPersonlInfo {
         return apply_bit_year;
     }
 
+    public String getOl_index1() {
+        return ol_index1;
+    }
+
+    public String getOl_index2() {
+        return ol_index2;
+    }
+
     @Id
     @Column(length = 20)
     private String application_no;
@@ -304,9 +312,12 @@ public class LateralApplicantsPersonlInfo {
     private String ol_year1;
     private String ol_subject1;
     private String ol_result1;
+    private String ol_index1;
+
     private String ol_year2;
     private String ol_subject2;
     private String ol_result2;
+    private String ol_index2;
 
     private String type;
     private String payment_category;

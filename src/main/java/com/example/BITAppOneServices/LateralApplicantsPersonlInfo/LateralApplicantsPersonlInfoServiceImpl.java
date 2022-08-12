@@ -76,6 +76,7 @@ public class LateralApplicantsPersonlInfoServiceImpl implements LateralApplicant
 
         String application_no = lateralApplicantsPersonlInfo.getApplication_no();
 
+
         return lateralApplicantsPersonlInfoRepository.updatePersonalInfoNew(
                 full_name,
                 full_name_sinhala,
@@ -136,10 +137,12 @@ public class LateralApplicantsPersonlInfoServiceImpl implements LateralApplicant
         String ol_year1 = lateralApplicantsPersonlInfo.getOl_year1();
         String ol_subject1 = lateralApplicantsPersonlInfo.getOl_subject1();
         String ol_result1 = lateralApplicantsPersonlInfo.getOl_result1();
+        String ol_index1 = lateralApplicantsPersonlInfo.getOl_index1();
 
         String ol_year2 = lateralApplicantsPersonlInfo.getOl_year2();
         String ol_subject2 = lateralApplicantsPersonlInfo.getOl_subject2();
         String ol_result2 = lateralApplicantsPersonlInfo.getOl_result2();
+        String ol_index2 = lateralApplicantsPersonlInfo.getOl_index2();
 
         String fit_registration_no = lateralApplicantsPersonlInfo.getFit_registration_no();
 
@@ -149,7 +152,7 @@ public class LateralApplicantsPersonlInfoServiceImpl implements LateralApplicant
         return lateralApplicantsPersonlInfoRepository.updateEducationInfoNew(
                 qualification_type, qualification_pending, need_different_req, al_year, al_index_no, al_type,
                 al_subject1, al_result1, al_subject2, al_result2, al_subject3, al_result3, al_subject4,
-                al_result4, ol_year1, ol_subject1, ol_result1, ol_year2, ol_subject2, ol_result2,fit_registration_no,
+                al_result4, ol_year1,ol_index1, ol_subject1, ol_result1, ol_year2,ol_index2, ol_subject2, ol_result2,fit_registration_no,
                 application_no);
     }
 
