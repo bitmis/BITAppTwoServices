@@ -254,6 +254,11 @@ public class LateralApplicantsPersonlInfo {
         return ol_index2;
     }
 
+
+    public String getFit_year() {
+        return fit_year;
+    }
+
     @Id
     @Column(length = 20)
     private String application_no;
@@ -331,6 +336,7 @@ public class LateralApplicantsPersonlInfo {
     private String invoice_no;
 
     private String fit_registration_no;
+    private String fit_year;
     private String bit_registration_no;
     private String disabilities;
 
