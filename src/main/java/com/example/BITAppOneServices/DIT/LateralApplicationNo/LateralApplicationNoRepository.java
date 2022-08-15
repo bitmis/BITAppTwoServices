@@ -7,7 +7,11 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.transaction.annotation.Transactional;
 
 
-public interface LateralApplicationNoRepository extends JpaRepository<LateralApplicationNo,Integer> {
+public interface LateralApplicationNoRepository extends JpaRepository<LateralApplicationNo, Integer> {
+    @Transactional
+    @Modifying
+    @Query("update LateralApplicationNo l set l.application_status = ?1 where l.application_no = ?2")
+    int updateDITApplicationStatus(String application_status, String application_no);
 
     @Query("select l from LateralApplicationNo l where l.bit_registration_no = ?1")
     LateralApplicationNo fetchLateralApplicationStatus(String bit_registration_no);

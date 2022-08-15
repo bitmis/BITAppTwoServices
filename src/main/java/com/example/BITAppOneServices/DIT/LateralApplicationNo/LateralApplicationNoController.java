@@ -32,5 +32,11 @@ public class LateralApplicationNoController {
     }
 
 
+    //update DIT application status
+    @PutMapping("/update_dit_application_status/{application_no}/{application_status}")
+    public int updateDITApplicationStatus( @PathVariable("application_no") String application_no ,@PathVariable("application_status") String application_status)
+    {
+        return lateralApplicationNoService.updateDITApplicationStatus( application_status,application_no);
+    }
 
 }

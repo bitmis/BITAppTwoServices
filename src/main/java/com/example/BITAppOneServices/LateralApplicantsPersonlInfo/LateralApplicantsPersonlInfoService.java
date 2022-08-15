@@ -27,7 +27,11 @@ public interface LateralApplicantsPersonlInfoService {
 
     int updateLateralApplicantsEducationInfo(LateralApplicantsPersonlInfo lateralApplicantsPersonlInfo);
 
+    int updateLateralApplicantStatusOne(String application_no);
+
     int updateLateralApplicantsPaymentInfo(LateralApplicantsPersonlInfo lateralApplicantsPersonlInfo);
+
+
 
     // Delete operation
     void deleteLateralApplicantsPersonlInfoById(String application_no);

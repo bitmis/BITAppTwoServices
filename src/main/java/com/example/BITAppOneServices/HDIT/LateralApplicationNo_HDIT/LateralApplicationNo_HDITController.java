@@ -26,4 +26,13 @@ public class LateralApplicationNo_HDITController {
         System.out.println("get applications");
         return lateralApplicationNo_HDITService.fetchApplicationStatus(registration_no);
     }
+
+    //update HDIT application status
+    @PutMapping("/update_hdit_application_status/{application_no}/{application_status}")
+    public int updateHDITApplicationStatus( @PathVariable("application_no") String application_no ,@PathVariable("application_status") String application_status)
+    {
+        return lateralApplicationNo_HDITService.updateHDITApplicationStatus( application_status,application_no);
+    }
+
+
 }

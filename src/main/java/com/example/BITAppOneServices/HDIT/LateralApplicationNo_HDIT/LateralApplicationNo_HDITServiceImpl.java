@@ -46,4 +46,11 @@ public class LateralApplicationNo_HDITServiceImpl implements LateralApplicationN
 
     }
 
+    @Override
+    public int updateHDITApplicationStatus(String application_status, String application_no) {
+
+        return lateralApplicationNo_HDITRepository.updateHDITApplicationStatus(application_status ,application_no);
+
+    }
+
 }

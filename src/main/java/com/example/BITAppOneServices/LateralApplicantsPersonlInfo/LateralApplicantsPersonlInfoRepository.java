@@ -48,6 +48,11 @@ public interface LateralApplicantsPersonlInfoRepository extends JpaRepository<La
 
     @Transactional
     @Modifying
+    @Query("update LateralApplicantsPersonlInfo l set l.application_status = ?1 where l.application_no = ?2")
+    int updatePersonalInfoStatusOne(String application_status, String application_no);
+
+    @Transactional
+    @Modifying
     @Query("update LateralApplicantsPersonlInfo l set l.type = ?1, l.payment_category = ?2, l.payment_type = ?3, l.amount = ?4, l.over_payment = ?5, l.surcharge = ?6, l.bank = ?7, l.bank_branch = ?8, l.paid_date = ?9, l.invoice_no = ?10 where l.application_no = ?11")
     int updatePaymentInfoNew(String type, String payment_category, String payment_type, String amount, String over_payment, String surcharge, String bank, String bank_branch, String paid_date, String invoice_no, String application_no);
 

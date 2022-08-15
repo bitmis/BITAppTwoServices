@@ -159,6 +159,16 @@ public class LateralApplicantsPersonlInfoServiceImpl implements LateralApplicant
                 application_no);
     }
 
+    @Override
+    public int updateLateralApplicantStatusOne(String application_no) {
+
+        String application_status ="payment_pending";
+
+        System.out.println(application_no +"  "+ application_status);
+        return lateralApplicantsPersonlInfoRepository.updatePersonalInfoStatusOne(application_status ,application_no);
+
+    }
+
 
     @Override
     public int updateLateralApplicantsPaymentInfo(LateralApplicantsPersonlInfo lateralApplicantsPersonlInfo) {

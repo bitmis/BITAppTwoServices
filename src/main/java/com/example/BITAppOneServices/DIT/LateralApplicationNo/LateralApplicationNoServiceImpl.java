@@ -26,7 +26,7 @@ public class LateralApplicationNoServiceImpl implements LateralApplicationNoServ
         lateralApplicationNo.setApplication_status("pending");
 
         LateralApplicationNo exists_L = lateralApplicationNoRepository.findByRegNo(registration_no);
-        System.out.println(exists_L+"  *** check if exists");
+        System.out.println(exists_L + "  *** check if exists");
         if (exists_L == null) {
             lateralApplicationNoRepository.save(lateralApplicationNo);
         }
@@ -40,10 +40,15 @@ public class LateralApplicationNoServiceImpl implements LateralApplicationNoServ
         //22Y2M000004
         String correct_application_no = "22Y" + year + "N" + formatted;
 
-        int result =  lateralApplicationNoRepository.updateCorrectApplicationNo(correct_application_no, year, registration_no);
+        int result = lateralApplicationNoRepository.updateCorrectApplicationNo(correct_application_no, year, registration_no);
 
         return result;
 
+    }
+
+    @Override
+    public int updateDITApplicationStatus(String application_status, String application_no) {
+        return lateralApplicationNoRepository.updateDITApplicationStatus(application_status, application_no);
     }
 
 
