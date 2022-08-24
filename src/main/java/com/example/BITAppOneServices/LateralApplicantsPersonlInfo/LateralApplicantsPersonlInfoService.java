@@ -29,6 +29,8 @@ public interface LateralApplicantsPersonlInfoService {
 
     int updateLateralApplicantStatusOne(String application_no);
 
+    int updateLateralApplicantStatusTwo(String application_no);
+
     int updateLateralApplicantsPaymentInfo(LateralApplicantsPersonlInfo lateralApplicantsPersonlInfo);
 
 

@@ -102,6 +102,13 @@ public class LateralApplicantsPersonlInfoController {
         return lateralApplicantsPersonlInfoService.updateLateralApplicantStatusOne( application_no);
     }
 
+    //update payment info complete status
+    @PutMapping("/update_lateral_applicant_complete_status_two/{application_no}")
+    public int updateLateralApplicantStatusTwo( @PathVariable("application_no") String application_no)
+    {
+        return lateralApplicantsPersonlInfoService.updateLateralApplicantStatusTwo( application_no);
+    }
+
     //update payment info
     @PutMapping("/update_lateral_applicant_payment_info")
     public int updateLateralApplicantPaymentInfo(

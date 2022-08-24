@@ -7,5 +7,7 @@ import java.util.Optional;
 
    public interface ImagesRepository extends JpaRepository<ImageModel, Long> {
         Optional<ImageModel> findByName(String name);
-    }
+
+
+   }
 

@@ -10,7 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 @Repository
 public interface LateralApplicantsPersonlInfoRepository extends JpaRepository<LateralApplicantsPersonlInfo, String> {
 
-
     @Query("select l.application_status from LateralApplicantsPersonlInfo l where l.application_no = ?1")
     String fetchLateralApplicationStatus(String application_no);
 
@@ -50,6 +49,11 @@ public interface LateralApplicantsPersonlInfoRepository extends JpaRepository<La
     @Modifying
     @Query("update LateralApplicantsPersonlInfo l set l.application_status = ?1 where l.application_no = ?2")
     int updatePersonalInfoStatusOne(String application_status, String application_no);
+
+    @Transactional
+    @Modifying
+    @Query("update LateralApplicantsPersonlInfo l set l.application_status = ?1 where l.application_no = ?2")
+    int updatePersonalInfoStatusTwo(String application_status, String application_no);
 
     @Transactional
     @Modifying

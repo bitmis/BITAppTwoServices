@@ -169,10 +169,20 @@ public class LateralApplicantsPersonlInfoServiceImpl implements LateralApplicant
 
     }
 
+    @Override
+    public int updateLateralApplicantStatusTwo(String application_no) {
+        String application_status ="completed";
+
+        System.out.println(application_no +"  "+ application_status);
+        return lateralApplicantsPersonlInfoRepository.updatePersonalInfoStatusTwo(application_status ,application_no);
+    }
+
 
     @Override
     public int updateLateralApplicantsPaymentInfo(LateralApplicantsPersonlInfo lateralApplicantsPersonlInfo) {
 
+
+       System.out.println(lateralApplicantsPersonlInfo);
 
         String type = lateralApplicantsPersonlInfo.getType();
         String payment_category = lateralApplicantsPersonlInfo.getPayment_category();

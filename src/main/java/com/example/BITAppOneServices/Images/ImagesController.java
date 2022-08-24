@@ -27,7 +27,16 @@ public class ImagesController {
         System.out.println("Original Image Byte Size - " + file.getBytes().length);
         ImageModel img = new ImageModel(file.getOriginalFilename(), file.getContentType(),
                 compressBytes(file.getBytes()));
-        imagesRepository.save(img);
+
+        Optional<ImageModel> tempModel = imagesRepository.findByName(img.getName());
+        if (!tempModel.isPresent()) {
+            imagesRepository.save(img);
+        } else {
+            imagesRepository.deleteById(tempModel.get().getId());
+            imagesRepository.save(img);
+
+
+        }
         return ResponseEntity.status(HttpStatus.OK);
     }
 
@@ -51,7 +60,7 @@ public class ImagesController {
     }
 
 
-    @GetMapping(path = { "/get/{imageName}" })
+    @GetMapping(path = {"/get/{imageName}"})
     public ImageModel getImage(@PathVariable("imageName") String imageName) throws IOException {
         final Optional<ImageModel> retrievedImage = imagesRepository.findByName(imageName);
         ImageModel img = new ImageModel(retrievedImage.get().getName(), retrievedImage.get().getType(),
