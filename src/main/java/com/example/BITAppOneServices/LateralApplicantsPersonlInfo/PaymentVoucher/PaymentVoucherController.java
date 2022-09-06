@@ -22,7 +22,6 @@ public class PaymentVoucherController {
 
         try {
 
-
             OutputStream file =paymentVoucherServiceImpl.generatePaymentVoucherPDF(application_no);
 
             String filename = "PaymentVouchers/"+application_no + "_payment_voucher.pdf";
@@ -35,14 +34,16 @@ public class PaymentVoucherController {
             baos.writeTo(file);
 
             return targetArray;
-        } catch (FileNotFoundException e) {
+        } catch (DocumentException | IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch (DocumentException e) {
-            e.printStackTrace();
+        } finally {
+            File deleteVoucher = new File("PaymentVouchers/" + application_no + "_payment_voucher.pdf");
+            boolean success1 = deleteVoucher.delete();
+            System.out.println(success1);
+            File deleteBarcode = new File("PaymentVouchers/" + application_no + "_barcode.jpg");
+            boolean success2 =deleteBarcode.delete();
+            System.out.println(success2);
         }
         return null;
     }
