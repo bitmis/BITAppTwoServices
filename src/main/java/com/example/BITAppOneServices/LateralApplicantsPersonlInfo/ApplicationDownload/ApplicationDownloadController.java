@@ -1,6 +1,61 @@
 package com.example.BITAppOneServices.LateralApplicantsPersonlInfo.ApplicationDownload;
 
+
+import com.example.BITAppOneServices.LateralApplicantsPersonlInfo.PaymentVoucher.PaymentVoucherServiceImpl;
+import com.itextpdf.text.DocumentException;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.*;
+
+import java.io.*;
+
+@CrossOrigin
+@RequestMapping(value = "/api")
+@RestController
 public class ApplicationDownloadController {
+
+
+    @Autowired
+    private ApplicationDownloadServiceImpl applicationDownloadServiceImpl;
+    // Read operation
+    @GetMapping(value="/get_application/{application_no}",produces= MediaType.APPLICATION_PDF_VALUE)
+    public  @ResponseBody
+    byte[]  print(@PathVariable("application_no") String application_no) {
+
+        try {
+
+            OutputStream file =applicationDownloadServiceImpl.generateApplicationPDF(application_no);
+
+            String filename = "PaymentVouchers/"+application_no + "_application.pdf";
+            FileInputStream fis= new FileInputStream(new File(filename));
+            byte[] targetArray = new byte[fis.available()];
+            fis.read(targetArray);
+
+
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            baos.writeTo(file);
+
+            return targetArray;
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } finally {
+            File deleteVoucher = new File("PaymentVouchers/" + application_no + "_application.pdf");
+            boolean success1 = deleteVoucher.delete();
+            System.out.println(success1);
+            File deleteBarcode = new File("PaymentVouchers/" + application_no + "_barcode.jpg");
+            boolean success2 =deleteBarcode.delete();
+            System.out.println(success2);
+        }
+        return null;
+    }
+
+
+
+
+
+
+
 
    public void myhtml(){
 
