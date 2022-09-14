@@ -17,10 +17,13 @@ import org.springframework.stereotype.Service;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.*;
+import java.sql.Blob;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.zip.DataFormatException;
+import java.util.zip.Inflater;
 
 @Service
 public class ApplicationDownloadServiceImpl {
@@ -113,27 +116,31 @@ public class ApplicationDownloadServiceImpl {
                 File saveImage = new File(barcodeImagePath);
                 ImageIO.write(barcodeImage, "jpg", saveImage);
 
-                Optional<ImageModel> voucherImage1Model = imagesRepository.findByName("22Y2N000012_1.jpg");
-                System.out.println(voucherImage1Model.get().getPicByte());
-                byte[] picByte1 = voucherImage1Model.get().getPicByte();
+                // voucher image one
+                String voucherImage1Path = "PaymentVouchers/" + application_no + "_1.jpg";
 
-                ByteArrayInputStream bis = new ByteArrayInputStream(picByte1);
-                BufferedImage bImage2 = ImageIO.read(bis);
-                ImageIO.write(bImage2, "jpg", new File("output.jpg") );
+                Optional<ImageModel> voucherImage1Model = imagesRepository.findByName(application_no + "_1.jpg");
+                if (voucherImage1Model.isPresent()) {
+                    System.out.println(voucherImage1Model.get().getName());
+                    byte[] picByte1 = decompressBytes(voucherImage1Model.get().getPicByte());
+                    BufferedImage voucherImage1 = ImageIO.read(new ByteArrayInputStream(picByte1));
+
+                    File saveVoucherImage1 = new File(voucherImage1Path);
+                    ImageIO.write(voucherImage1, "jpg", saveVoucherImage1);
+                }
 
 
-//                BufferedImage voucherImage1 = ImageIO.read(new ByteArrayInputStream(picByte1));
-//                String voucherImage1Path = "PaymentVouchers/" + application_no + "_1.jpg";
-//                File saveVoucherImage1 = new File(voucherImage1Path);
-//                ImageIO.write(voucherImage1, "jpg", saveVoucherImage1);
-//
-//                Optional<ImageModel> voucherImage2Model = imagesRepository.findByName("22Y2N000012_1.jpg");
-//                byte[] picByte2 = voucherImage2Model.get().getPicByte();
-//                BufferedImage voucherImage2 = ImageIO.read(new ByteArrayInputStream(picByte2));
-//                String voucherImage2Path = "PaymentVouchers/" + application_no + "_2.jpg";
-//                File saveVoucherImage2 = new File(voucherImage2Path);
-//                ImageIO.write(voucherImage2, "jpg", saveVoucherImage2);
+                // voucher image two
+                String voucherImage2Path = "PaymentVouchers/" + application_no + "_2.jpg";
 
+                Optional<ImageModel> voucherImage2Model = imagesRepository.findByName(application_no + "_2.jpg");
+                if (voucherImage2Model.isPresent()) {
+                    byte[] picByte2 = decompressBytes(voucherImage2Model.get().getPicByte());
+                    BufferedImage voucherImage2 = ImageIO.read(new ByteArrayInputStream(picByte2));
+
+                    File saveVoucherImage2 = new File(voucherImage2Path);
+                    ImageIO.write(voucherImage2, "jpg", saveVoucherImage2);
+                }
                 Timestamp timestamp = new Timestamp(System.currentTimeMillis());
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 
@@ -153,37 +160,37 @@ public class ApplicationDownloadServiceImpl {
                         "  </tr>\n" +
                         "</table>"));
                 htmlString.append(new String("<br/><p style=\" color:white\">space</p>"));
-                htmlString.append(new String("<table style=\"border:1px solid black; width:100%;font-family:Times New Roman ;margin-top:10%\">\n" +
+                htmlString.append(new String("<table style=\"border:1px solid #808080; width:100%;font-family:Times New Roman ;margin-top:10%\">\n" +
                         "  <tr>\n" +
-                        "    <td style=\"width:30% ; color: #808080 ;padding:5%\">1. Name in Full:</td>\n" +
+                        "    <td style=\"width:30% ;font-size:14px; color: #404040 ;padding:5%\">1. Name in Full:</td>\n" +
                         "    <td style=\"padding:5%\">" + full_name + "</td>\n" +
                         "  </tr>\n" +
                         "  <tr>\n" +
-                        "    <td style=\"width:30% ; color: #808080 ;padding:5%\">2. Name with Initials:</td>\n" +
+                        "    <td style=\"width:30% ; font-size:14px;color: #404040 ;padding:5%\">2. Name with Initials:</td>\n" +
                         "    <td style=\"padding:5%\">" + initials + " " + name_marking + "</td>\n" +
                         "  </tr>\n" +
                         "</table>"));
 
                 htmlString.append(new String("<p style=\" color:white\">space</p>"));
-                htmlString.append(new String("<table style=\"border:1px solid #000;width:100%;margin-top:3%;font-family:Times New Roman;padding:5%\"><tr><td style=\"color: #808080;padding:5%\">3. Title :</td><td style=\"text-align:left;padding:5%\">" + title + "</td><td style=\"color: #808080;padding:5%\">4. Gender :</td><td style=\"text-align:left;padding:5%\">" + gender + "</td></tr><tr><td style=\"color: #808080;padding:5%\">5. Citizenship :</td><td style=\"text-align:left;padding:5%\">" + citizenship + "</td><td style=\"color: #808080;padding:5%\">6. Nationality :</td><td style=\"text-align:left;padding:5%\">" + nationality + "</td></tr><tr><td style=\"color: #808080;padding:5%\">7. NIC Number :</td><td style=\"text-align:left;padding:5%\">" + id_no + "</td><td style=\"color: #808080;padding:5%\">8. DoB :</td><td style=\"text-align:left;padding:5%\">" + dob + "</td></tr></table>"));
+                htmlString.append(new String("<table style=\"border:1px solid #808080;width:100%;margin-top:3%;font-family:Times New Roman;padding:5%\"><tr><td style=\"font-size:14px;color: #404040 ;padding:5%\">3. Title :</td><td style=\"text-align:left;padding:5%\">" + title + "</td><td style=\"font-size:14px;color: #404040 ;padding:5%\">4. Gender :</td><td style=\"text-align:left;padding:5%\">" + gender + "</td></tr><tr><td style=\"font-size:14px;color: #404040 ;padding:5%\">5. Citizenship :</td><td style=\"text-align:left;padding:5%\">" + citizenship + "</td><td style=\"font-size:14px;color: #404040 ;padding:5%\">6. Nationality :</td><td style=\"text-align:left;padding:5%\">" + nationality + "</td></tr><tr><td style=\"font-size:14px;color: #404040 ;padding:5%\">7. NIC Number :</td><td style=\"text-align:left;padding:5%\">" + id_no + "</td><td style=\"font-size:14px;color: #404040 ;padding:5%\">8. DoB :</td><td style=\"text-align:left;padding:5%\">" + dob + "</td></tr></table>"));
                 htmlString.append(new String(" <p style=\" color:white\">space</p>"));
-                htmlString.append(new String("<table style=\"border:1px solid #000;width:100%;margin-top:3%;font-family:Times New Roman\"><tr><td>10. Contact Details</td><td></td></tr><tr><td style=\"width:30%;color:#808080;padding:5%\">(a) Permanent Address :</td><td style=\"padding:5%;word-wrap:break-word\"> " + full_address + "</td></tr><tr><td style=\"width:30%;color:#808080;padding:5%\">(b) Country :</td><td style=\"padding:5%\">" + country + "</td></tr><tr><td style=\"width:30%;color:#808080;padding:5%\">(c) Mobile :</td><td style=\"padding:5%\">" + mobile + "</td></tr><tr><td style=\"width:30%;color:#808080;padding:5%\">(d) Land Phone :</td><td style=\"padding:5%\">" + phone + "</td></tr><tr><td style=\"width:30%;color:#808080;padding:5%\">(e) E-mail :</td><td style=\"padding:5%\">" + email + "</td></tr></table>"));
+                htmlString.append(new String("<table style=\"border:1px solid #808080;width:100%;margin-top:3%;font-family:Times New Roman\"><tr><td style=\"font-size:14px;padding:5%\">10. Contact Details</td><td></td></tr><tr><td style=\"width:30%;font-size:14px;color: #404040 ;padding:5%\">(a) Permanent Address :</td><td style=\"padding:5%;word-wrap:break-word\"> " + full_address + "</td></tr><tr><td style=\"width:30%;font-size:14px;color: #404040 ;padding:5%\">(b) Country :</td><td style=\"padding:5%\">" + country + "</td></tr><tr><td style=\"width:30%;font-size:14px;color: #404040 ;padding:5%\">(c) Mobile :</td><td style=\"padding:5%\">" + mobile + "</td></tr><tr><td style=\"width:30%;font-size:14px;color: #404040 ;padding:5%\">(d) Land Phone :</td><td style=\"padding:5%\">" + phone + "</td></tr><tr><td style=\"width:30%;font-size:14px;color: #404040 ;padding:5%\">(e) E-mail :</td><td style=\"padding:5%\">" + email + "</td></tr></table>"));
                 htmlString.append(new String(" <p style=\" color:white\">space</p>"));
-                htmlString.append(new String("<table style=\"border:1px solid black; border-bottom:0px solid white ;width:100%;margin-bottom:3% ;font-family:Times New Roman ;margin-top:10%\">\n" +
+                htmlString.append(new String("<table style=\"border:1px solid #808080; border-bottom:0px solid white ;width:100%;margin-bottom:3% ;font-family:Times New Roman ;margin-top:10%\">\n" +
                         "  <tr>\n" +
-                        "    <td>11. Education Qualification : </td>\n" +
+                        "    <td style=\"font-size:14px;padding:5%\">11. Education Qualification : </td>\n" +
                         "  </tr>\n" +
                         "  <tr>\n" +
-                        "    <td style=\"color:#808080;padding:5%\">(a) Ordinary Level (O/L) Results : </td>\n" +
+                        "    <td style=\"font-size:14px;color: #404040 ;padding:5%\">(a) Ordinary Level (O/L) Results : </td>\n" +
                         "  </tr>\n" +
                         "  <tr>\n" +
                         "    <td>\n" +
                         "      <table style=\"border:0px solid black; width:100%\">\n" +
                         "        <tr>\n" +
-                        "          <td style=\"color:#808080;padding:5%\">Subject</td>\n" +
-                        "          <td style=\"color:#808080;padding:5%\">Year</td>\n" +
-                        "          <td style=\"color:#808080;padding:5%\">Result</td>\n" +
-                        "          <td style=\"color:#808080;padding:5%\">Index</td>\n" +
+                        "          <td style=\"font-size:14px;color: #404040 ;padding:5%\">Subject</td>\n" +
+                        "          <td style=\"font-size:14px;color: #404040 ;padding:5%\">Year</td>\n" +
+                        "          <td style=\"font-size:14px;color: #404040 ;padding:5%\">Result</td>\n" +
+                        "          <td style=\"font-size:14px;color: #404040 ;padding:5%\">Index</td>\n" +
                         "        </tr>\n" +
                         "        <tr>\n" +
                         "          <td style=\"text-align:left;padding:5%\">" + ol_subject1 + "</td>\n" +
@@ -205,9 +212,9 @@ public class ApplicationDownloadServiceImpl {
 
                 System.out.println("qualification_type   ->  " + qualification_type);
                 if (Objects.equals(qualification_type, "1")) {
-                    htmlString.append(new String("<table style=\"border:1px solid black;border-top:0px solid white;width:100%;margin-bottom:3%;font-family:Times New Roman ;margin-top:10% ;page-break-after:auto\">\n" +
+                    htmlString.append(new String("<table style=\"border:1px solid #808080;border-top:0px solid white;width:100%;margin-bottom:3%;font-family:Times New Roman ;margin-top:10% ;page-break-after:auto\">\n" +
                             "  <tr>\n" +
-                            "    <td style=\"color:#808080;padding:5%\">(b) Entry Qualification : </td>\n" +
+                            "    <td style=\"font-size:14px;color: #404040 ;padding:5%\">(b) Entry Qualification : </td>\n" +
                             "  </tr>\n" +
                             "  <tr>\n" +
                             "    <td style=\"padding:5%\"> I have passed the Advanced Level (A/L) exam </td>\n" +
@@ -218,17 +225,29 @@ public class ApplicationDownloadServiceImpl {
                             "  <tr>\n" +
                             "    <td>\n" +
                             "      <table style=\"border:0px solid black; width:100%\">\n" +
+                            "  <tr>\n" +
+                            "          <td style=\"width:40%\">\n" +
+                            "            <table>\n" +
+                            "              <tr>\n" +
+                            "                <td style=\"width:20%;font-size:14px;color: #404040 ;padding:5%\">Year</td>\n" +
+                            "                <td style=\"text-align:left;padding:5%\">" + al_year + "</td>\n" +
+                            "              </tr>\n" +
+                            "            </table>\n" +
+                            "          </td>\n" +
+                            "          <td style=\"width:40%\">\n" +
+                            "            <table>\n" +
+                            "              <tr>\n" +
+                            "                <td style=\"width:20%;font-size:14px;color: #404040 ;padding:5%\">Index No</td>\n" +
+                            "                <td style=\"text-align:left;padding:5%\">" + al_index_no + "</td>\n" +
+                            "              </tr>\n" +
+                            "            </table>\n" +
+                            "          </td>\n" +
+                            "        </tr> </table>" +
+
+                            "      <table style=\"border:0px solid black; width:100%\">\n" +
                             "        <tr>\n" +
-                            "          <td style=\"color:#808080;padding:5%\">Year</td>\n" +
-                            "          <td style=\"color:#808080;padding:5%\">Index No</td>\n" +
-                            "        </tr>\n" +
-                            "        <tr>\n" +
-                            "          <td style=\"text-align:left;padding:5%\">" + al_year + "</td>\n" +
-                            "          <td style=\"text-align:left;padding:5%\">" + al_index_no + "</td>\n" +
-                            "        </tr>\n" +
-                            "        <tr>\n" +
-                            "          <td style=\"color:#808080;padding:5%\">Subject</td>\n" +
-                            "          <td style=\"color:#808080;padding:5%\">Result</td>\n" +
+                            "          <td style=\"width:60%;font-size:14px;color: #404040 ;padding:5%\">Subject</td>\n" +
+                            "          <td style=\"font-size:14px;color: #404040 ;padding:5%\">Result</td>\n" +
                             "        </tr>\n" +
                             "        <tr>\n" +
                             "          <td style=\"text-align:left;padding:5%\">" + al_subject1 + "</td>\n" +
@@ -253,26 +272,26 @@ public class ApplicationDownloadServiceImpl {
 
                 } else if (Objects.equals(qualification_type, "2")) {
 
-                    htmlString.append(new String("<table style=\"border:1px solid black;border-top:0px solid white ; width:100%;margin-bottom:3%;font-family:Times New Roman ;margin-top:10% ;page-break-after:always\">\n" +
+                    htmlString.append(new String("<table style=\"border:1px solid #808080;border-top:0px solid white ; width:100%;margin-bottom:3%;font-family:Times New Roman ;margin-top:10% ;page-break-after:always\">\n" +
                             "  <tr>\n" +
-                            "    <td style=\"color:#808080;padding:5%\">(b) Entry Qualification : </td>\n" +
+                            "    <td style=\"font-size:14px;color: #404040 ;padding:5%\">(b) Entry Qualification : </td>\n" +
                             "  </tr>\n" +
                             "  <tr>\n" +
                             "    <td style=\"padding:5%\"> I have passed the FIT exam conducted by UCSC</td>\n" +
                             "  </tr>\n" +
                             "  <tr>\n" +
-                            "    <td style=\"color:#808080;padding:5%\">(c) FIT Information : </td>\n" +
+                            "    <td style=\"font-size:14px;color: #404040 ;padding:5%\">(c) FIT Information : </td>\n" +
                             "  </tr>\n" +
                             "  <tr>\n" +
                             "    <td>\n" +
                             "      <table style=\"border:0px solid black; width:100%\">\n" +
                             "        <tr>\n" +
-                            "          <td style=\"color:#808080;padding:5%\">FIT Year</td>\n" +
-                            "          <td style=\"color:#808080;padding:5%\">FIT Index</td>\n" +
+                            "          <td style=\"width:30% ; font-size:14px;color: #404040 ;padding:5%\">FIT Year</td>\n" +
+                            "          <td style=\"text-align:left;padding:5%\">" + fit_year + "</td>" +
                             "        </tr>\n" +
                             "        <tr>\n" +
-                            "          <td style=\"text-align:left;padding:5%\">"+fit_year+"</td>\n" +
-                            "          <td style=\"text-align:left;padding:5%\">"+fit_registration_no+"</td>\n" +
+                            "         <td style=\"width:30% ; font-size:14px;color: #404040 ;padding:5%\">FIT Index</td>\n" +
+                            "          <td style=\"text-align:left;padding:5%\">" + fit_registration_no + "</td>\n" +
                             "        </tr>\n" +
                             "      </table>\n" +
                             "    </td>\n" +
@@ -281,31 +300,72 @@ public class ApplicationDownloadServiceImpl {
                 }
 
                 htmlString.append(new String("<p style=\" color:white\">space</p>"));
-                htmlString.append(new String("<table style=\"border:1px solid black; width:100%;margin-top:30%;font-family:Times New Roman ;margin-top:10%\">\n" +
+                htmlString.append(new String("<table style=\"border:1px solid #808080; width:100%;margin-top:30%;font-family:Times New Roman ;margin-top:10%\">\n" +
                         "  <tr>\n" +
-                        "    <td style=\"color:#808080;padding:5%\">12. Payment Details : </td>\n" +
+                        "    <td style=\"font-size:14px;color: #404040 ;padding:5%\">12. Payment Details : </td>\n" +
                         "  </tr>\n" +
                         "  <tr>\n" +
                         "    <td>\n" +
                         "      <table style=\"border:0px solid black; width:100%\">\n" +
                         "        <tr>\n" +
-                        "          <td style=\"color:#808080;padding:5% ;width:30%\">Amount Paid</td>\n" +
-                        "          <td style=\"text-align:left;padding:5%\">"+amount+"</td>\n" +
+                        "          <td style=\"font-size:14px;color: #404040 ;padding:5% ;width:30%\">Amount Paid:</td>\n" +
+                        "          <td style=\"text-align:left;padding:5%\">" + amount + "</td>\n" +
                         "        </tr>\n" +
                         "        <tr>\n" +
-                        "          <td style=\"color:#808080;padding:5%\">Paid Date</td>\n" +
-                        "          <td style=\"text-align:left;padding:5%\">"+paid_date+"</td>\n" +
+                        "          <td style=\"font-size:14px;color: #404040 ;padding:5%\">Paid Date:</td>\n" +
+                        "          <td style=\"text-align:left;padding:5%\">" + paid_date + "</td>\n" +
                         "        </tr>\n" +
                         "        <tr>\n" +
-                        "          <td style=\"color:#808080;padding:5%\">Paid Bank</td>\n" +
-                        "          <td style=\"text-align:left;padding:5%\">"+bank+" - "+bank_branch+"</td>\n" +
+                        "          <td style=\"font-size:14px;color: #404040 ;padding:5%\">Paid Bank:</td>\n" +
+                        "          <td style=\"text-align:left;padding:5%\">" + bank + " - " + bank_branch + "</td>\n" +
                         "        </tr>\n" +
                         "      </table>\n" +
                         "    </td>\n" +
                         "  </tr>\n" +
                         "</table>"));
 
+                if (voucherImage1Model.isPresent() && voucherImage2Model.isPresent()) {
+                    htmlString.append(new String("<p style=\" color:white\">space</p>"));
+                    htmlString.append(new String("<table style=\"border:1px solid #808080; width:100%;margin-bottom:3%;font-family:Times New Roman ;margin-top:10%\">\n" +
+                            "  <tr>\n" +
+                            "    <td><img src=\" " + voucherImage1Path + "\" style=\"width:300px;height:400px \"></img> </td>\n" +
+                            "    <td><img src=\" " + voucherImage1Path + "\" style=\"width:300px;height:400px \"></img></td>\n" +
+                            "  </tr>\n" +
+                            "</table>"));
+                }
 
+
+//                htmlString.append(new String("<p style=\" color:white\">space</p>"));
+//                htmlString.append(new String("<table style=\"border:1px solid #666666; width:100%;margin-bottom:3%;font-family:Times New Roman ;margin-top:10%\">\n" +
+//                        "  <tr>\n" +
+//                        "    <td style=\"color:#808080;padding:5%;width:30%\">13. Is Differently-abled : </td>\n" +
+//                        "    <td style=\"text-align:left;padding:5%\">" + disabilities + "</td>\n" +
+//                        "</tr> </table>"));
+
+                htmlString.append(new String("<p style=\" color:white\">space</p>"));
+                htmlString.append(new String("<table style=\"border:1px solid #808080; width:100%;margin-bottom:3%;font-family:Times New Roman ;margin-top:10%\">\n" +
+                        "  <tr>\n" +
+                        "    <td style=\"text-align:center; padding:5%\">DECLARATION </td>\n" +
+                        "  </tr>\n" +
+                        "  <tr>\n" +
+                        "    <td style=\"text-align: justify;\n" +
+                        "  text-justify: inter-word;padding:5%\">I do hereby certify that the above particulars furnished by me are true and correct. In the event of my application for registration being accepted,I shall abide by all the regulations governing external candidates of the University of Colombo School of Computing. I agree that the University has the right to cancel my registration at any time, either if I am found to have furnished false information or if I do not abide by the regulations governing external candidates of the University of Colombo School of Computing. <br/><br/> </td>\n" +
+                        "  </tr>\n" +
+                        "  <tr>\n" +
+                        "    <td>\n" +
+                        "      <table>\n" +
+                        "        <tr>\n" +
+                        "          <td style=\"width:30%;;text-align:center\">..................................</td>\n" +
+                        "          <td style=\"width:70%;text-align:center\">...............................................</td>\n" +
+                        "        </tr>\n" +
+                        "        <tr>\n" +
+                        "          <td style=\"width:30%;;text-align:center\">Date</td>\n" +
+                        "          <td style=\"width:70%;text-align:center\">Signature of the Applicant</td>\n" +
+                        "        </tr>\n" +
+                        "      </table>\n" +
+                        "    </td>\n" +
+                        "  </tr>\n" +
+                        "</table>"));
 
                 InputStream is = new ByteArrayInputStream(htmlString.toString().getBytes());
                 XMLWorkerHelper.getInstance().parseXHtml(writer, document, is);
@@ -326,4 +386,32 @@ public class ApplicationDownloadServiceImpl {
 
         return BarcodeImageHandler.getImage(barcode);
     }
+
+
+    public static byte[] decompressBytes(byte[] data) {
+        Inflater inflater = new Inflater();
+        inflater.setInput(data);
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream(data.length);
+        byte[] buffer = new byte[1024];
+        try {
+            while (!inflater.finished()) {
+                int count = inflater.inflate(buffer);
+                outputStream.write(buffer, 0, count);
+            }
+            outputStream.close();
+        } catch (IOException ioe) {
+        } catch (DataFormatException e) {
+        }
+        return outputStream.toByteArray();
+    }
 }
+
+
+//                            "        <tr>\n" +
+//                            "          <td style=\"font-size:14px;color: #404040 ;width:70%; padding:5%\">Year</td>\n" +
+//                            "          <td style=\"text-align:left;padding:5%\">" + al_year + "</td>\n" +
+//                            "        </tr>\n" +
+//                            "        <tr>\n" +
+//                            "          <td style=\"font-size:14px;color: #404040 ;padding:5%\">Index No</td>\n" +
+//                            "          <td style=\"text-align:left;padding:5%\">" + al_index_no + "</td>\n" +
+//                            "        </tr>\n" +

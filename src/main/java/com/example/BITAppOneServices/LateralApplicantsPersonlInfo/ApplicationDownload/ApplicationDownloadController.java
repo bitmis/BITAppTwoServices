@@ -40,12 +40,15 @@ public class ApplicationDownloadController {
             // TODO Auto-generated catch block
             e.printStackTrace();
         } finally {
-            File deleteVoucher = new File("PaymentVouchers/" + application_no + "_application.pdf");
-            boolean success1 = deleteVoucher.delete();
-            System.out.println(success1);
+
             File deleteBarcode = new File("PaymentVouchers/" + application_no + "_barcode.jpg");
             boolean success2 =deleteBarcode.delete();
-            System.out.println(success2);
+
+            File deleteVoucherImage1 = new File("PaymentVouchers/" + application_no + "_1.jpg");
+            deleteVoucherImage1.delete();
+            File deleteVoucherImage2 = new File("PaymentVouchers/" + application_no + "_2.jpg");
+            deleteVoucherImage2.delete();
+
         }
         return null;
     }
