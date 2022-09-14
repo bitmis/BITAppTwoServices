@@ -43,8 +43,35 @@ public class ApplicationDownloadServiceImpl {
             String name_marking = applicationInfor.getName_marking();
             String initials = applicationInfor.getInitials();
 
-            String title = applicationInfor.getTitle();
-            String gender = applicationInfor.getGender();
+            String title_code = applicationInfor.getTitle();
+            String title = "";
+            switch (title_code) {
+                case "1":
+                    title = "Rev.";
+                    break;
+                case "2":
+                    title = "Dr.";
+                    break;
+                case "3":
+                    title = "Mr.";
+                    break;
+                case "6":
+                    title = "Ms.";
+                    break;
+
+            }
+            String gender_code = applicationInfor.getGender();
+            String gender = "";
+            switch (gender_code) {
+                case "1":
+                    gender = "Male";
+                    break;
+                case "2":
+                    gender = "Female";
+                    break;
+
+            }
+
             String citizenship = applicationInfor.getCitizenship();
             String nationality = applicationInfor.getNationality();
 
