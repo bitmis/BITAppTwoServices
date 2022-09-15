@@ -125,6 +125,7 @@ public class ApplicationDownloadServiceImpl {
 
             String bank = applicationInfor.getBank();
             String bank_branch = applicationInfor.getBank_branch();
+            String type = applicationInfor.getType();
 
 
             String disabilities = applicationInfor.getDisabilities();
@@ -140,6 +141,7 @@ public class ApplicationDownloadServiceImpl {
 
                 BufferedImage barcodeImage = generateBarcodeImage(application_no);
                 String barcodeImagePath = "PaymentVouchers/" + application_no + "_barcode.jpg";
+                System.out.println(barcodeImagePath);
                 File saveImage = new File(barcodeImagePath);
                 ImageIO.write(barcodeImage, "jpg", saveImage);
 
@@ -148,7 +150,7 @@ public class ApplicationDownloadServiceImpl {
 
                 Optional<ImageModel> voucherImage1Model = imagesRepository.findByName(application_no + "_1.jpg");
                 if (voucherImage1Model.isPresent()) {
-                    System.out.println(voucherImage1Model.get().getName());
+                    System.out.println(voucherImage1Path);
                     byte[] picByte1 = decompressBytes(voucherImage1Model.get().getPicByte());
                     BufferedImage voucherImage1 = ImageIO.read(new ByteArrayInputStream(picByte1));
 
@@ -162,12 +164,14 @@ public class ApplicationDownloadServiceImpl {
 
                 Optional<ImageModel> voucherImage2Model = imagesRepository.findByName(application_no + "_2.jpg");
                 if (voucherImage2Model.isPresent()) {
+                    System.out.println(voucherImage2Path);
                     byte[] picByte2 = decompressBytes(voucherImage2Model.get().getPicByte());
                     BufferedImage voucherImage2 = ImageIO.read(new ByteArrayInputStream(picByte2));
 
                     File saveVoucherImage2 = new File(voucherImage2Path);
                     ImageIO.write(voucherImage2, "jpg", saveVoucherImage2);
                 }
+
                 Timestamp timestamp = new Timestamp(System.currentTimeMillis());
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 
@@ -351,12 +355,14 @@ public class ApplicationDownloadServiceImpl {
                         "  </tr>\n" +
                         "</table>"));
 
-                if (voucherImage1Model.isPresent() && voucherImage2Model.isPresent()) {
+                if (Objects.equals(type, "1") && voucherImage1Model.isPresent() && voucherImage2Model.isPresent()) {
+
+                    System.out.println("IMAGES in DB");
                     htmlString.append(new String("<p style=\" color:white\">space</p>"));
                     htmlString.append(new String("<table style=\"border:1px solid #808080; width:100%;margin-bottom:3%;font-family:Times New Roman ;margin-top:10%\">\n" +
                             "  <tr>\n" +
                             "    <td><img src=\" " + voucherImage1Path + "\" style=\"width:300px;height:400px \"></img> </td>\n" +
-                            "    <td><img src=\" " + voucherImage1Path + "\" style=\"width:300px;height:400px \"></img></td>\n" +
+                            "    <td><img src=\" " + voucherImage2Path + "\" style=\"width:300px;height:400px \"></img></td>\n" +
                             "  </tr>\n" +
                             "</table>"));
                 }

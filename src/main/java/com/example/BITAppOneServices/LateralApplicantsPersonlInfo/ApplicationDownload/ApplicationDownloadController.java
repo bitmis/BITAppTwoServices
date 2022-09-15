@@ -41,13 +41,13 @@ public class ApplicationDownloadController {
             e.printStackTrace();
         } finally {
 
-            File deleteBarcode = new File("PaymentVouchers/" + application_no + "_barcode.jpg");
-            boolean success2 =deleteBarcode.delete();
+//            File deleteBarcode = new File("PaymentVouchers/" + application_no + "_barcode.jpg");
+//            boolean success2 =deleteBarcode.delete();
 
-            File deleteVoucherImage1 = new File("PaymentVouchers/" + application_no + "_1.jpg");
-            deleteVoucherImage1.delete();
-            File deleteVoucherImage2 = new File("PaymentVouchers/" + application_no + "_2.jpg");
-            deleteVoucherImage2.delete();
+//            File deleteVoucherImage1 = new File("PaymentVouchers/" + application_no + "_1.jpg");
+//            deleteVoucherImage1.delete();
+//            File deleteVoucherImage2 = new File("PaymentVouchers/" + application_no + "_2.jpg");
+//            deleteVoucherImage2.delete();
 
         }
         return null;
