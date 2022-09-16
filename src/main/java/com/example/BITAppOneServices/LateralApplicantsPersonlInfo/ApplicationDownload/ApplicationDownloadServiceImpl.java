@@ -34,7 +34,6 @@ public class ApplicationDownloadServiceImpl {
     @Autowired
     private ImagesRepository imagesRepository;
 
-
     public OutputStream generateApplicationPDF(String application_no) {
 
         LateralApplicantsPersonlInfo applicationInfor = lateralApplicantsPersonlInfoRepository.findByApplicationNo(application_no);
@@ -141,7 +140,6 @@ public class ApplicationDownloadServiceImpl {
 
                 BufferedImage barcodeImage = generateBarcodeImage(application_no);
                 String barcodeImagePath = "PaymentVouchers/" + application_no + "_barcode.jpg";
-                System.out.println(barcodeImagePath);
                 File saveImage = new File(barcodeImagePath);
                 ImageIO.write(barcodeImage, "jpg", saveImage);
 
@@ -150,12 +148,11 @@ public class ApplicationDownloadServiceImpl {
 
                 Optional<ImageModel> voucherImage1Model = imagesRepository.findByName(application_no + "_1.jpg");
                 if (voucherImage1Model.isPresent()) {
-                    System.out.println(voucherImage1Path);
+
                     byte[] picByte1 = decompressBytes(voucherImage1Model.get().getPicByte());
                     BufferedImage voucherImage1 = ImageIO.read(new ByteArrayInputStream(picByte1));
-
                     File saveVoucherImage1 = new File(voucherImage1Path);
-                    ImageIO.write(voucherImage1, "jpg", saveVoucherImage1);
+                    ImageIO.write(voucherImage1, "png", saveVoucherImage1);
                 }
 
 
@@ -164,12 +161,11 @@ public class ApplicationDownloadServiceImpl {
 
                 Optional<ImageModel> voucherImage2Model = imagesRepository.findByName(application_no + "_2.jpg");
                 if (voucherImage2Model.isPresent()) {
-                    System.out.println(voucherImage2Path);
+
                     byte[] picByte2 = decompressBytes(voucherImage2Model.get().getPicByte());
                     BufferedImage voucherImage2 = ImageIO.read(new ByteArrayInputStream(picByte2));
-
                     File saveVoucherImage2 = new File(voucherImage2Path);
-                    ImageIO.write(voucherImage2, "jpg", saveVoucherImage2);
+                    ImageIO.write(voucherImage2, "png", saveVoucherImage2);
                 }
 
                 Timestamp timestamp = new Timestamp(System.currentTimeMillis());

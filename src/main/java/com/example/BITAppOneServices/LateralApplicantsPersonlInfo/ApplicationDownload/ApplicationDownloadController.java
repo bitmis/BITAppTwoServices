@@ -1,8 +1,6 @@
 package com.example.BITAppOneServices.LateralApplicantsPersonlInfo.ApplicationDownload;
 
 
-import com.example.BITAppOneServices.LateralApplicantsPersonlInfo.PaymentVoucher.PaymentVoucherServiceImpl;
-import com.itextpdf.text.DocumentException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
