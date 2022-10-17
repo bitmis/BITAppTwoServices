@@ -60,11 +60,11 @@ public class LateralApplicantsPersonlInfoServiceImpl implements LateralApplicant
     @Override
     public int updateLateralApplicantsPersonalInfo(LateralApplicantsPersonlInfo lateralApplicantsPersonlInfo) {
 
-        String full_name = lateralApplicantsPersonlInfo.getFull_name();
+        String full_name = lateralApplicantsPersonlInfo.getFull_name().toUpperCase();
         String full_name_sinhala = lateralApplicantsPersonlInfo.getFull_name_sinhala();
         String full_name_tamil = lateralApplicantsPersonlInfo.getFull_name_tamil();
-        String name_marking = lateralApplicantsPersonlInfo.getName_marking();
-        String initials = lateralApplicantsPersonlInfo.getInitials();
+        String name_marking = lateralApplicantsPersonlInfo.getName_marking().toUpperCase();
+        String initials = lateralApplicantsPersonlInfo.getInitials().toUpperCase();
         String title = lateralApplicantsPersonlInfo.getTitle();
         String gender = lateralApplicantsPersonlInfo.getGender();
         String id_type = lateralApplicantsPersonlInfo.getId_type();
