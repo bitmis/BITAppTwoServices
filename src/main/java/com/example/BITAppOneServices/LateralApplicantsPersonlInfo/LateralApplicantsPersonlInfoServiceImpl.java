@@ -89,7 +89,6 @@ public class LateralApplicantsPersonlInfoServiceImpl implements LateralApplicant
                 id_type,
                 id_no,
                 dob,
-                email,
                 citizenship,
                 nationality ,
                 disabilities,
@@ -108,10 +107,11 @@ public class LateralApplicantsPersonlInfoServiceImpl implements LateralApplicant
         String address3 = lateralApplicantsPersonlInfo.getAddress3();
         String district = lateralApplicantsPersonlInfo.getDistrict();
         String country = lateralApplicantsPersonlInfo.getCountry();
+        String email = lateralApplicantsPersonlInfo.getEmail();
 
         String application_no = lateralApplicantsPersonlInfo.getApplication_no();
 
-        return lateralApplicantsPersonlInfoRepository.updateContactInfoNew(phone, mobile, address1, address2, address3, district, country, application_no);
+        return lateralApplicantsPersonlInfoRepository.updateContactInfoNew(phone, mobile, address1, address2, address3, district, country,email, application_no);
     }
 
     @Override
